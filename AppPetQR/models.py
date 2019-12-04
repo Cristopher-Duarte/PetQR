@@ -86,7 +86,7 @@ class MedicoVeterinaria(models.model):
     estado=models.BooleanField(null=True, default=True)
     celular = models.CharField(max_lenght=40)
 
-    fk_veterinariamodels.ForeignKet('Veterinaria', on_delete=models.CASCADE)
+    fk_veterinaria=models.ForeignKet('Veterinaria', on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -106,6 +106,17 @@ class Mascotas(models.model):
     
     def __str__(self):
         return self.nombre
+
+
+class Producto(models.model):
+    nombre = models.CharField(max_lenght=40)
+    fk_producto = models.ForeignKet('TipoProducto', on_delete=models.CASCADE)
+    fk_veterinaria = models.ForeignKet('Veterinaria', on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.nombre
+
 
 
 
@@ -128,4 +139,7 @@ class Permission(models.model):
             ('is_medico', _('Is Medico'))
 
         )
+
+
+
 
