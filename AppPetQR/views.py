@@ -9,7 +9,7 @@ from django.contrib.auth import login
 """
 
 def Inicio(request):
-    return render(request,"AppPetQR/Base.html")
+    return render(request,"AppPetQR/Movil.html")
 
 
 
