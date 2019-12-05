@@ -9,7 +9,13 @@ from django.contrib.auth import login
 """
 
 def Inicio(request):
-    return render(request,"AppPetQR/Movil.html")
+    return render(request,"Movil.html")
+
+def Vacunas(request):
+    return render(request,"AppPetQR/vacunas.html")
+
+def Control(request):
+    return render(request,"AppPetQR/control-medico.html")
 
 
 
