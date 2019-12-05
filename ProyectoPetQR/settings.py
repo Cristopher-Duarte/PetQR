@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'AppPetQR'
+    'AppPetQR',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'PetQR',
         'USER': 'root',
-        'PASSWORD':'1005012521',
+        'PASSWORD':'2202',
         'HOST':'localhost',
     }
 }
