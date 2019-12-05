@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'AppPetQR'
+
+    'AppPetQR',
+
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,7 @@ DATABASES = {
         'HOST':'1005012521.mysql.pythonanywhere-services.com',
 }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

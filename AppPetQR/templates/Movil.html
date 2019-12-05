@@ -19,24 +19,26 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#"><span></span>Vacunas</a></li>
-                <li><a href="#"><span></span>Control Medico</a></li>
-                <li><a href="#"><span></span>Desparacitacion</a></li>
-                <li><a href="#"><span></span>Almacen</a></li>
-                <li><a href="#"><span></span>Recordatorio</a></li>
+                <li><a href="{% url 'vacuna' %}"><span></span>Vacunas</a></li>
+                <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
+                <li><a href="{% url 'vacuna' %}"><span></span>Desparacitacion</a></li>
+                <li><a href="{% url 'vacuna' %}"><span></span>Almacen</a></li>
+                <li><a href="{% url 'vacuna' %}"><span></span>Recordatorio</a></li>
             </ul>
         </nav>
     </header>
     <section class="container">
-        <center>
-        <p>abcdefghijklmñopqrstuvwxyz</p>
-        <p>abcdefghijklmñopqrstuvwxyz</p>
-        <p>abcdefghijklmñopqrstuvwxyz</p>
-        </center>
+        {% block contenido %}
+
+        {% endblock %}
     </section>
 
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="{% static 'js/main.js' %}"></script>
 </body>
+
+
+
+
 
 </html>

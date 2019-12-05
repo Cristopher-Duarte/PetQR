@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import *
+from django.urls import reverse_lazy
+from AppPetQR.models import *
 
 """
 from django.views.generic.edit import FormView
@@ -9,10 +12,24 @@ from django.contrib.auth import login
 """
 
 def Inicio(request):
-    return render(request,"AppPetQR/Movil.html")
+    return render(request,"Movil.html")
 
+def Vacunas(request):
+    return render(request,"AppPetQR/vacunas.html")
 
+def Control(request):
+    return render(request,"AppPetQR/control-medico.html")
 
+class RegistroVeterinaria(CreateView):
+    model = Veterinaria
+    template_name = 'RegistroVeterinaria.html' 
+    form_class = CreateView
+    success_url = reverse_lazy('ListaVeterinarias')
 
+class ListarVeterinaria(ListView):
+    model = Veterinaria
+    template_name = 'ListaVete.html'
+    form_class = ListView
+    success_url = reverse_lazy('ListaVeterinaria')
 
 

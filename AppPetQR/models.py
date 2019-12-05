@@ -11,7 +11,7 @@ class Veterinaria(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
     logo = models.CharField(max_length=40)
     correocoorporativo = models.CharField(max_length=40)
-    estado=models.BooleanField(null=True, default=True)
+    estado=models.BooleanField(default=True)
     telefono = models.CharField(max_length=40)
     
 
@@ -69,7 +69,7 @@ class Usuario(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     correoelectronico = models.CharField(max_length=40)
-    estado=models.BooleanField(null=True, default=True)
+    estado=models.BooleanField(default=True)
     celular = models.CharField(max_length=40)
 
     fk_veterinaria=models.ForeignKey('Veterinaria', on_delete=models.CASCADE)
@@ -93,7 +93,7 @@ class MedicoVeterinaria(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     correoelectronico = models.CharField(max_length=40)
-    estado=models.BooleanField(null=True, default=True)
+    estado=models.BooleanField(default=True)
     celular = models.CharField(max_length=40)
 
     fk_veterinaria=models.ForeignKey('Veterinaria', on_delete=models.CASCADE)
@@ -107,7 +107,7 @@ class Mascotas(models.Model):
     nombre = models.CharField(max_length=40)
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
-    estado=models.BooleanField(null=True, default=True)
+    estado=models.BooleanField(default=True)
 
     fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE)
     fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE)
