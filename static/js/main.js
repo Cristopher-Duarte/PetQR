@@ -1,3 +1,4 @@
+var $;
 $(document).ready(go);
 var contador = 1;
 
