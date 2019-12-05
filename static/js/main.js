@@ -7,13 +7,11 @@ $('.bt-menu').click(function(){
     if (contador == 1) {
         $('nav').animate({
             left: '0'
-        });
-        contador = 0;
-    } else {
-        contador = 1;
-        $('nav').animate({
-            left: '-100%'
-        });
-    }
-});
-} 
+        })  
+    }})
+};
+window.onload = function esconder(){
+    $('nav').animate({
+        left: '-100%'
+    }); 
+};

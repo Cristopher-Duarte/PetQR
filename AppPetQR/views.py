@@ -20,6 +20,17 @@ def Vacunas(request):
 def Control(request):
     return render(request,"AppPetQR/control-medico.html")
 
+def Desparacitacion(request):
+    return render(request,"AppPetQR/desparacitacion.html")
+
+def Almacen(request):
+    return render(request,"AppPetQR/almacen.html")
+
+def Recordatorio(request):
+    return render(request,"AppPetQR/recordatorio.html")
+
+
+
 class RegistroVeterinaria(CreateView):
     model = Veterinaria
     template_name = 'RegistroVeterinaria.html' 
