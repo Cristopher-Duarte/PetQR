@@ -8,13 +8,14 @@ from .models import *
 
 
 urlpatterns = [
+    #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
     path('Inicio',Inicio,name="inicio"),
     path('/Vacunas',Vacunas,name="vacuna"),
     path('/Control',Control,name="control"),
     path('/Desparacitacion',Desparacitacion,name="desparacitacion"),
     path('/Almacen',Almacen,name="almacen"),
     path('/Recordatorio',Recordatorio,name="recordatorio"),
-
+    #<--------FIN MOVIL--------->
     path('Veterinaria/Lista',Veterinaria_List, name="VeterinariaList"),
     path('Veterinaria/Agregar',Veterinaria_view,name="VeterinariaCrear"),
     path('Veterinaria/Editar/<int:id>',Veterinaria_edit,name="VeterinariaEditar"),
