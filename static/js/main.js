@@ -3,7 +3,7 @@ $(document).ready(go);
 var contador = 1;
 
 function go () {
-$('.bt-menu').click(function(){
+$('.TAP').click(function(){
     if (contador == 1) {
         $('nav').animate({
             left: '0'

@@ -12,7 +12,7 @@ header {
 }
 
 header nav {
-	width:90%;
+	width:100%;
 	max-width:1000px;
 	margin:20px auto;
 	background:#024959;
@@ -44,6 +44,16 @@ header nav ul li span {
 
 header nav ul li a:hover {
 	background:#037E8C;
+}
+.foto{
+	border-radius: none;
+	height: 100px;
+	width: 140px;
+	border: black 2px;
+	position:fixed;
+	margin-left: 70%;
+	padding-top: 5px;
+	padding-bottom: 2px;
 }
 
 section {
@@ -99,7 +109,8 @@ section {
 		height: 100%;
 		padding: 0;
 		margin: 0;
-		background: red;
+		background: gray;
+		padding-bottom: 5px;
 	}
 
 }
