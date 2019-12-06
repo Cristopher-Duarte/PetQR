@@ -14,47 +14,81 @@
 </head>
 
 
-<body class="containr">
+<body class="container">
     
-        <table class="table table-dark">
-                <tr>
-                    <th>Nombre</th>
-            
-                    <th>FechaRegistro</th>
-            
-                    <th>Logo</th>
-            
-                    <th>CorreoCoorporativo</th>
-            
-                    <th>Telefono</th>
-            
-                    <th>Editar</th>
-            
-                    <th>Borrar</th>
-            
-            
-                </tr>
-                {% for Veterinaria in object_list %}
-                <tr>
-                    <td>{{ Veterinaria.nombre }}</td>
-            
-                    <td>{{ Veterinaria.fecharegistro }}</td>
-            
-                    <td>{{ Veterinaria.logo }}</td>
-            
-                    <td>{{ Veterinaria.correocoorporativo }}</td>
-                    
-                    <td>{{ Veterinaria.telefono }}</td>
-            
-                   
-                </tr>
-                {% endfor%}
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>N°</th>
 
+                <th>Nombre</th>
+            
+                <th>FechaRegistro</th>
                 
+                <th>Logo</th>
+            
+                <th>CorreoCoorporativo</th>
+                
+                <th>Telefono</th>
+                    
+                <th>Editar</th>
+            
+                <th>Borrar</th>
+
+                <th><button class="btn" ><a href="{% url 'VeterinariaCrear' %} " style="text-decoration: none" > Agregar Nueva Veterinaria</a></button></th>
+                </tr>
+
+        </thead>
+
+        <tbody>
+            {% if veterinaria %}
+            
+            {% for veterinaria in veterinaria %}
+            <tr>
+                <td>
+                    {{ veterinaria.id }}
+                </td>
+                <td>
+                    {{ veterinaria.nombre }}
+                </td>
+                <td>
+                    {{ veterinaria.fecharegistro }}
+                </td>
+                <td>
+                    {{ veterinaria.logo }}
+                </td>
+                <td>
+                    {{ veterinaria.correocoorporativo }}
+                </td>
+                <td>
+                    {{ veterinaria.telefono }}
+                </td> 
+
+                <td>
+                        <button class="btn"><a href="{% url 'VeterinariaEditar' veterinaria.id %}" style="text-decoration: none">Editar</a></button>
+                </td>
+
+                <td>
+                        <button class="btn"><a href="{% url 'VeterinariaBorrar' veterinaria.id %}" style="text-decoration: none">Borrar</a></button>
+                </td>
+                
+            </tr>
+        
+            {% endfor %}
+
+            {% else %}
+
+            <h1>No se han registrado veterinarias</h1>
+                
+            {% endif %}
+        </tbody>
+
+
+    </table>            
 
     <main class="main">
         <div class="container">
-                <p><a href="{% url 'RegistroVeterinaria' %}" class="boton btn" >Agregar nueva veterinaria</a></p>
+                
         </div>        
     </main>
 

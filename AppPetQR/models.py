@@ -138,8 +138,7 @@ class RecetaMedicas(models.Model):
     fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE)
 
 
-    def __str__(self):
-        return self.fecharegistro
+
 
 class DetalleRecetaMedica(models.Model):
 
