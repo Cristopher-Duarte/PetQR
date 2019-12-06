@@ -1,0 +1,11 @@
+{% block content %}
+
+<form action="#" method="post">
+    {% csrf_token %}
+    <h3>¿Desea eliminar la veterinaria {{ veterinaria.nombre }}?</h3>
+    <button type="submit" class="btn btn-danger">Aceptar</button>
+    <button class="btn btn-default" href="{% url 'VeterinariaList' %}">Cancelar</button>
+
+</form>
+
+{% endblock %}
