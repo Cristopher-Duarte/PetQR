@@ -67,12 +67,14 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)
     fechanacimiento =  models.DateField()
+    
     fecharegistro = models.DateField(auto_now_add = True)
     correoelectronico = models.CharField(max_length=40)
     estado=models.BooleanField(default=True)
     celular = models.CharField(max_length=40)
 
-    fk_veterinaria=models.ForeignKey('Veterinaria', on_delete=models.CASCADE)
+    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE, db_column="fk_veterinaria")
+    fk_genero = models.ForeignKey('Genero', on_delete=models.CASCADE, db_column="fk_genero")
 
 
     def __str__(self):
@@ -81,7 +83,7 @@ class Usuario(models.Model):
 
 class Perfil(models.Model):
     foto = models.CharField(max_length=40)
-    fk_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    fk_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column="fk_usuario")
 
 
 
@@ -96,7 +98,8 @@ class MedicoVeterinaria(models.Model):
     estado=models.BooleanField(default=True)
     celular = models.CharField(max_length=40)
 
-    fk_veterinaria=models.ForeignKey('Veterinaria', on_delete=models.CASCADE)
+    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE, db_column="fk_veterinaria")
+    fk_genero = models.ForeignKey('Genero', on_delete=models.CASCADE, db_column="fk_genero")
 
 
     def __str__(self):
@@ -109,10 +112,10 @@ class Mascotas(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
     estado=models.BooleanField(default=True)
 
-    fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE)
-    fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE)
-    fk_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
-    fk_generomascota = models.ForeignKey('GeneroMascota', on_delete=models.CASCADE)
+    fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
+    fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE, db_column="fk_raza")
+    fk_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, db_column="fk_usuario")
+    fk_generomascota = models.ForeignKey('GeneroMascota', on_delete=models.CASCADE, db_column="fk_generomascota")
     
     def __str__(self):
         return self.nombre
@@ -120,8 +123,8 @@ class Mascotas(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=40)
-    fk_producto = models.ForeignKey('TipoProducto', on_delete=models.CASCADE)
-    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE)
+    fk_Tipoproducto = models.ForeignKey('TipoProducto', on_delete=models.CASCADE, db_column="fk_Tipoproducto")
+    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE, db_column="fk_veterinaria")
 
 
     def __str__(self):
@@ -134,8 +137,8 @@ class RecetaMedicas(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
 
 
-    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE)
-    fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE)
+    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
+    fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE, db_column="fk_medicoveterinario")
 
 
 
@@ -145,8 +148,8 @@ class DetalleRecetaMedica(models.Model):
 
     descripcion = models.CharField(max_length=60)
 
-    fk_recetamedica = models.ForeignKey('RecetaMedicas', on_delete=models.CASCADE)
-    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    fk_recetamedica = models.ForeignKey('RecetaMedicas', on_delete=models.CASCADE, db_column="fk_recetamedica")
+    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
     def __str__(self):
@@ -158,8 +161,8 @@ class InfoVacunas(models.Model):
     proximavacuna =  models.DateField()
 
 
-    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE)
-    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
+    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
     def __str__(self):
@@ -167,8 +170,8 @@ class InfoVacunas(models.Model):
 
 class DetalleInfoVacunas(models.Model):
     nombre= models.CharField(max_length=60)
-    fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE)
-    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE)
+    fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
+    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE, db_column="fk_sticker")
 
     def __str__(self):
         return self.nombre
@@ -180,8 +183,8 @@ class InfoDesparacitacion(models.Model):
     proximadesparacitante =  models.DateField()
 
 
-    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE)
-    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
+    fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
     def __str__(self):
@@ -189,12 +192,12 @@ class InfoDesparacitacion(models.Model):
 
 
 class Recordatorios(models.Model):
-    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE)
-    fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE)
+    fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
+    fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
 
 
 class Notificaciones(models.Model):
-    fk_recordatorios = models.ForeignKey('Recordatorios', on_delete=models.CASCADE)
+    fk_recordatorios = models.ForeignKey('Recordatorios', on_delete=models.CASCADE, db_column="fk_recordatorios")
 
 
 

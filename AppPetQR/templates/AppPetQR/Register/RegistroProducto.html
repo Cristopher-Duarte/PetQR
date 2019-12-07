@@ -1,0 +1,10 @@
+{% extends 'Administrador.html '%}
+
+{% block cuerpo %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+
+{% endblock %}

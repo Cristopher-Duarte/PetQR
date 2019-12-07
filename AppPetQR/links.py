@@ -1,6 +1,6 @@
 from AppPetQR.views import *
 from django.urls import *
-from AppPetQR import views
+
 from .models import *
 
 
@@ -9,21 +9,22 @@ from .models import *
 
 urlpatterns = [
     #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
-    path('Inicio',Inicio,name="inicio"),
-    path('/Vacunas',Vacunas,name="vacuna"),
-    path('/Control',Control,name="control"),
-    path('/Desparacitacion',Desparacitacion,name="desparacitacion"),
-    path('/Almacen',Almacen,name="almacen"),
-    path('/Recordatorio',Recordatorio,name="recordatorio"),
+    path('',Inicio,name="inicio"),
+    path('Vacunas/',Vacunas,name="vacuna"),
+    path('Control/',Control,name="control"),
+    path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
+    path('Almacen/',Almacen,name="almacen"),
+    path('Recordatorio/',Recordatorio,name="recordatorio"),
     #<--------FIN MOVIL--------->
-    path('Veterinaria/Lista',Veterinaria_List, name="VeterinariaList"),
-    path('Veterinaria/Agregar',Veterinaria_view,name="VeterinariaCrear"),
-    path('Veterinaria/Editar/<int:id>',Veterinaria_edit,name="VeterinariaEditar"),
-    path('Veterinaria/Borrar/<int:id>',Veterinaria_delete,name="VeterinariaBorrar"),
-    
-    #path('/login',login.as_view(),name="login"),
 
-    #path('Veterinarias',LoginView.as_view(),name="Veterinarias"),
+
+    path('RegisterVeterinaria/',RegistroVeterinaria.as_view(),name="Rveterinaria"),
+    path('RegisterUsuario/<int:pk>',RegistroUsuario.as_view(),name="RUsuario"),
+    path('RegisterMascota/<int:pk>',RegistroMascotas.as_view(),name="RMascota"),
+    path('RegistroMedico/<int:pk>',RegistroMedico.as_view(),name="RMedico"),
+    path('RegistroProducto/<int:pk>',RegistroProducto.as_view(),name="RProducto"),
+    
+
 
 
 
