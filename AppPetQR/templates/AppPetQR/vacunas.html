@@ -1,0 +1,50 @@
+{% extends 'Movil.html' %}
+
+{% block contenido %}
+<!-----Vacunas----->
+
+<table>
+    <tbody>
+        <tr>
+            <td>Nombre:</td>
+            <td>{{ Mascotas.nombre }} </td>
+        </tr>
+        <tr>
+            <td>Raza:</td>
+            <td>Mestiza</td>
+        </tr>
+        <tr>
+            <td>Edad:</td>
+            <td>2 años</td>
+        </tr>
+        <tr>
+            <td>Responsable:</td>
+            <td>Luis Gutierrez</td>
+        </tr>
+    </tbody>
+    <!---xs<img src="static/images/pet.jpg" class="foto">------>
+    
+        
+        <p>{{ Mascotas.foto }}</p>
+
+    
+ 
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

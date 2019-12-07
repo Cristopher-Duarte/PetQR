@@ -111,6 +111,7 @@ class Mascotas(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     estado=models.BooleanField(default=True)
+    foto=models.ImageField(upload_to='photos/')
 
     fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
     fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE, db_column="fk_raza")
