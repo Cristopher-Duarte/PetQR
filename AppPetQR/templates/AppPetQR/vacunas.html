@@ -2,11 +2,12 @@
 
 {% block contenido %}
 <!-----Vacunas----->
+
 <table>
     <tbody>
         <tr>
             <td>Nombre:</td>
-            <td>Nicol</td>
+            <td>{{ Mascotas.nombre }} </td>
         </tr>
         <tr>
             <td>Raza:</td>
@@ -21,7 +22,12 @@
             <td>Luis Gutierrez</td>
         </tr>
     </tbody>
-    <img src="static/images/pet.jpg" class="foto">
+    <!---xs<img src="static/images/pet.jpg" class="foto">------>
+    
+        
+        <p>{{ Mascotas.foto }}</p>
+
+    
  
 
 </table>

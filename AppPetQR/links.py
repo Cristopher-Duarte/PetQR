@@ -2,6 +2,8 @@ from AppPetQR.views import *
 from django.urls import *
 from AppPetQR import views
 from .models import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -28,4 +30,4 @@ urlpatterns = [
 
 
 
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

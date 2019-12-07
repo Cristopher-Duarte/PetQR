@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'PetQR',
         'USER': 'root',
-        'PASSWORD':'2202',
+        'PASSWORD':'1005012521',
         'HOST':'localhost',
     }
 }
@@ -126,3 +126,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
