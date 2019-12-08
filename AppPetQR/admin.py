@@ -22,6 +22,14 @@ admin.site.register(Recordatorios)
 admin.site.register(Notificaciones)
 #admin.site.register(Permission)
 
+
+
+
+
+
+
+
+
 # Register your models here.
 
 

@@ -125,8 +125,10 @@ class MascotaForm(forms.ModelForm):
         }
 
 class ProductoForm(forms.ModelForm):
+
     class Meta:
         model =Producto
+
         fields=[
             'nombre',
             'fk_Tipoproducto',
@@ -144,3 +146,34 @@ class ProductoForm(forms.ModelForm):
             'nombre'            :   forms.TextInput(attrs={'class':'form-control'}),
             'fk_Tipoproducto'   :   forms.Select(attrs={'class':'form-control'}),   
         }
+
+class InfoDesparacitacionForm(forms.ModelForm):
+    def __init__(self ,id,*args, **kwargs):
+        super(InfoDesparacitacionForm, self).__init__(*args, **kwargs)
+        
+        self.fields['fk_producto'].queryset =  Producto.objects.filter(fk_Tipoproducto=id[0].id)
+
+    class Meta:
+    
+        model=InfoDesparacitacion
+
+        fields=[
+            'proximadesparacitante',
+            'fk_producto',
+        ]
+        
+
+        labels={
+            'proximadesparacitante'     :   'proximadesparacitante',
+            'fk_producto'               :   'Producto',
+        }
+        
+        
+        widgets={
+            'proximadesparacitante'     :   forms.TextInput(attrs={'class':'form-control'}),
+            'fk_producto'               :   forms.Select()
+
+        }
+
+
+

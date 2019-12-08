@@ -51,7 +51,6 @@ class RegistroVeterinaria(View):
         return render(request, 'AppPetQR/Register/RegistroVeterinaria.html', {'form':Formulario})       
 
 
-
 class RegistroUsuario(View):
     def get(self,request, pk):
         FormularioU = UsuarioForm
@@ -145,12 +144,30 @@ class RegistroProducto(View):
             return render(request, 'AppPetQR/Register/RegistroProducto.html',{'form':FormularioP})
         
 
-class RegistroVacunas(View):
-    def get():
-        pass
+class RegistroDesparacitacion(View):
 
-    def post():
-        pass
+    def get(self, request, pk):
+        id = TipoProducto.objects.filter(nombre="Medicamentos")
+        FormularioD = InfoDesparacitacionForm(id)
+
+        return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})      
+
+    def post(self, request, pk):
+
+       
+        id = TipoProducto.objects.filter(nombre="Medicamentos")
+        MascotasDate = Mascotas.objects.get(id=pk) #objecto de la veterinaria
+
+        FormularioD = InfoDesparacitacionForm(id, request.POST)
+
+        forms = FormularioD.save(commit=False)
+
+        forms.fk_mascota = MascotasDate
+
+        if FormularioD.is_valid():
+            forms.save()
+            return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})
+       
 
 
 

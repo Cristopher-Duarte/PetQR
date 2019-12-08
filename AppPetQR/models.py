@@ -189,7 +189,7 @@ class InfoDesparacitacion(models.Model):
 
 
     def __str__(self):
-        return self.fk_producto
+        return str(self.fk_producto)
 
 
 class Recordatorios(models.Model):
