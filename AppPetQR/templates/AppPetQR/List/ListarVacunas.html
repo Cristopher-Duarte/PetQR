@@ -26,7 +26,31 @@
 
 
         </tbody>
+
         <img src="static/images/pet.jpg" class="foto"  />
+    </table>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha registro</th>
+            <th>Fecha de Refuerzo</th>
+            <th>Datelle</th>
+
+        </tr>
+
+        {% for datos in VacunaDate %}
+            <tr>
+                <th>{{datos.fk_producto.nombre}}</th>
+                <th>{{datos.fecharegistro}}</th>
+                <th>{{datos.proximavacuna}}</th>
+                
+                <th>Ver mas</th>
+
+            </tr>
+
+        {% endfor %}
+
     </table>
 
 {% endblock %}

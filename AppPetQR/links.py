@@ -12,14 +12,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
     path('',Inicio,name="inicio"),
-    path('Vacunas/',Vacunas,name="vacuna"),
+    #path('Vacunas/',Vacunas,name="vacuna"),
     path('Control/',Control,name="control"),
-    path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
+    #path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
     path('Almacen/',Almacen,name="almacen"),
     path('Recordatorio/',Recordatorio,name="recordatorio"),
     #<--------FIN MOVIL--------->
 
-
+    #------------------------Registros------------------------------------------------------------------#
     path('RegisterVeterinaria/',RegistroVeterinaria.as_view(),name="Rveterinaria"),
     path('RegisterUsuario/<int:pk>',RegistroUsuario.as_view(),name="RUsuario"),
     path('RegisterMascota/<int:pk>',RegistroMascotas.as_view(),name="RMascota"),
@@ -29,7 +29,9 @@ urlpatterns = [
     path('RegistroVacunas/<int:pk>',RegistroVacunas.as_view(),name="RVacunas"),
     
 
-
+    #------------------------Listas------------------------------------------------------------------#
+    path('ListarVacunas/<int:pk>',ListarVacunas.as_view(),name="LVacunas"),
+    path('ListarDesparacitacion/<int:pk>',ListarDesparacitacion.as_view(),name="LDesparacitacion"),
 
 
 

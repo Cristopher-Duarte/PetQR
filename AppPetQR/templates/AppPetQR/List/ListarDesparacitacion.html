@@ -1,0 +1,54 @@
+{% extends 'Movil.html '%}
+
+{% block contenido %}
+
+
+    <table>
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td>Nicol</td>
+            </tr>
+            <tr>
+                <td>Reza</td>
+                <td>Mestiza</td>
+            </tr>
+            <tr>
+                <td>Edad</td>
+                <td>2 años</td>
+            </tr>
+            <tr>
+                <td>Responsable</td>
+                <td>Luis alejandro</td>
+            </tr>
+
+
+        </tbody>
+
+        <img src="static/images/pet.jpg" class="foto"  />
+    </table>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha registro</th>
+            <th>Proxima Fecha</th>
+            <th>Datelle</th>
+
+        </tr>
+
+        {% for datos in DesparacitacionDate %}
+            <tr>
+                <th>{{datos.fk_producto.nombre}}</th>
+                <th>{{datos.fecharegistro}}</th>
+                <th>{{datos.proximadesparacitante}}</th>
+                
+                <th>Ver mas</th>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

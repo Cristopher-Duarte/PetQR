@@ -16,19 +16,19 @@ def Inicio(request):
     return render(request,"Movil.html")
 
 def Vacunas(request):
-    return render(request,"AppPetQR/Listas/vacunas.html")
+    return render(request,"AppPetQR/List/ListarVacunas.html")
 
 def Control(request):
-    return render(request,"AppPetQR/Listas/controlmedico.html")
+    return render(request,"AppPetQR/List/controlmedico.html")
 
 def Desparacitacion(request):
-    return render(request,"AppPetQR/Listas/desparacitacion.html")
+    return render(request,"AppPetQR/List/desparacitacion.html")
 
 def Almacen(request):
-    return render(request,"AppPetQR/Listas/almacen.html")
+    return render(request,"AppPetQR/List/almacen.html")
 
 def Recordatorio(request):
-    return render(request,"AppPetQR/Listas/recordatorio.html")
+    return render(request,"AppPetQR/List/recordatorio.html")
 
 
 #---------------Registros---------------#
@@ -206,9 +206,25 @@ class RegistroVacunas(View):
         return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV, 'form2':FormularioDV})
 
 
+#---------------Listar---------------#
+
+class ListarVacunas(View):
+    def get(self, request, pk):
+        VacunaDate = InfoVacunas.objects.filter(fk_mascota=pk)
+        return render(request,'AppPetQR/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
 
 
+    def post(self, request, pk):
+        pass
 
 
+class ListarDesparacitacion(View):
+    def get(self, request, pk):
+        DesparacitacionDate = InfoDesparacitacion.objects.filter(fk_mascota=pk)
+        return render(request,'AppPetQR/List/ListarDesparacitacion.html', {'DesparacitacionDate':DesparacitacionDate})
+
+
+    def post(self, request, pk):
+        pass
 
 
