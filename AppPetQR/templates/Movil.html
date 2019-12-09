@@ -17,13 +17,13 @@
         <div class="menu_bar">
             <a href="#" class="bt-menu"><span class="icon-menu"></span>Menu</a>
         </div>
-        <nav>
+        <nav onload="esconder()">
             <ul>
                 <li><a href="{% url 'vacuna' %}"><span></span>Vacunas</a></li>
                 <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
-                <li><a href="{% url 'vacuna' %}"><span></span>Desparacitacion</a></li>
-                <li><a href="{% url 'vacuna' %}"><span></span>Almacen</a></li>
-                <li><a href="{% url 'vacuna' %}"><span></span>Recordatorio</a></li>
+                <li><a href="{% url 'desparacitacion' %}"><span></span>Desparacitacion</a></li>
+                <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
+                <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
             </ul>
         </nav>
     </header>
