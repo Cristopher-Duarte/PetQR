@@ -26,6 +26,7 @@ urlpatterns = [
     path('RegistroMedico/<int:pk>',RegistroMedico.as_view(),name="RMedico"),
     path('RegistroProducto/<int:pk>',RegistroProducto.as_view(),name="RProducto"),
     path('RegistroDesparacitacion/<int:pk>',RegistroDesparacitacion.as_view(),name="RDesparacitacion"),
+    path('RegistroVacunas/<int:pk>',RegistroVacunas.as_view(),name="RVacunas"),
     
 
 

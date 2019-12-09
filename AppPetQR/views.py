@@ -167,8 +167,43 @@ class RegistroDesparacitacion(View):
         if FormularioD.is_valid():
             forms.save()
             return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})
+   
        
+class RegistroVacunas(View):
 
+    def get(self, request, pk):
+        id = TipoProducto.objects.filter(nombre="Medicamentos")
+        FormularioV =InfoVacunasForm(id)
+        FormularioDV = DetalleInfoVacunasForm
+        return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV, 'form2':FormularioDV})
+
+
+    def post(self, request, pk):
+        id = TipoProducto.objects.filter(nombre="Medicamentos")
+        MascotasDate = Mascotas.objects.get(id=pk) #objecto de la veterinaria
+
+        FormularioV = InfoVacunasForm(id, request.POST)
+        FormularioDV = DetalleInfoVacunasForm(request.POST)
+
+        forms = FormularioV.save(commit=False)
+
+
+        forms.fk_mascota = MascotasDate
+
+        if FormularioV.is_valid():
+            forms.save()
+            
+            forms2 = FormularioDV.save(commit=False)
+
+            fk_vacuna= InfoVacunas.objects.get(id=(len(InfoVacunas.objects.all())))
+
+                
+
+            forms2.fk_infovacuna = fk_vacuna
+
+            forms2.save()
+
+        return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV, 'form2':FormularioDV})
 
 
 

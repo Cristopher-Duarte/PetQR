@@ -176,4 +176,57 @@ class InfoDesparacitacionForm(forms.ModelForm):
         }
 
 
+class InfoVacunasForm(forms.ModelForm):
+    def __init__(self, id, *args, **kwargs):
+        super(InfoVacunasForm, self).__init__(*args, **kwargs)
+        self.fields['fk_producto'].queryset =  Producto.objects.filter(fk_Tipoproducto=id[0].id)
+
+
+    
+    class Meta:
+    
+        model=InfoVacunas
+
+        fields=[
+            'proximavacuna',
+            'fk_producto',
+        ]
+        
+
+        labels={
+            'proximavacuna'             :   'proxima vacuna',
+            'fk_producto'               :   'Producto',
+        }
+        
+        
+        widgets={
+            'proximavacuna'             :   forms.TextInput(attrs={'class':'form-control'}),
+            'fk_producto'               :   forms.Select()
+
+        }
+
+class DetalleInfoVacunasForm(forms.ModelForm):
+    class Meta:
+
+        model=DetalleInfoVacunas
+
+        fields=[
+            'nombre',
+            
+        ]
+        
+
+        labels={
+            'nombre'             :   'nombre',
+            
+        }
+        
+        
+        widgets={
+            'nombre'             :   forms.TextInput(attrs={'class':'form-control'}),
+            
+
+        }
+
+
 

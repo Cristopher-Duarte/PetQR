@@ -153,8 +153,6 @@ class DetalleRecetaMedica(models.Model):
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
-    def __str__(self):
-        return self.fk_producto
 
 class InfoVacunas(models.Model):
 
@@ -166,16 +164,17 @@ class InfoVacunas(models.Model):
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
-    def __str__(self):
-        return self.fk_producto
+ 
+
+
+    
 
 class DetalleInfoVacunas(models.Model):
     nombre= models.CharField(max_length=60)
     fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
-    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE, db_column="fk_sticker")
+    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE, db_column="fk_sticker", null=True)
 
-    def __str__(self):
-        return self.nombre
+
 
 
 class InfoDesparacitacion(models.Model):
@@ -187,9 +186,6 @@ class InfoDesparacitacion(models.Model):
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
-
-    def __str__(self):
-        return str(self.fk_producto)
 
 
 class Recordatorios(models.Model):
