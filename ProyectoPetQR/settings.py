@@ -80,11 +80,19 @@ WSGI_APPLICATION = 'ProyectoPetQR.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': '1005012521$PetQR',
         'USER': '1005012521',
         'PASSWORD':'290817082319.',
         'HOST':'1005012521.mysql.pythonanywhere-services.com',
 }
+=======
+        'NAME': 'PetQR',
+        'USER': 'root',
+        'PASSWORD':'1001346644',
+        'HOST':'localhost',
+    }
+>>>>>>> 7d7ba54d7d95e1d8cc272a74d489a45590b546e4
 }
 
 
@@ -128,3 +136,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
