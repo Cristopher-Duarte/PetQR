@@ -11,10 +11,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
-    path('',Inicio,name="inicio"),
+    path('Inicio',Inicio,name="inicio"),
     #path('Vacunas/',Vacunas,name="vacuna"),
     path('Control/',Control,name="control"),
-    #path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
+    path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
     path('Almacen/',Almacen,name="almacen"),
     path('Recordatorio/',Recordatorio,name="recordatorio"),
     #<--------FIN MOVIL--------->

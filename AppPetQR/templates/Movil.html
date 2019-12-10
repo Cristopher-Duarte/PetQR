@@ -19,19 +19,20 @@
         </div>
         <nav onload="esconder()">
             <ul>
-                <li><a href="{% url 'LVacunas' %}"><span></span>Vacunas</a></li>
-                <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
-                <li><a href="{% url 'LDesparacitacion' %}"><span></span>Desparacitacion</a></li>
-                <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
-                <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
+                {% block Menu %}
+
+                {% endblock %}
+
             </ul>
         </nav>
     </header>
-    <section class="container">
-        {% block contenido %}
+    
+        <div class="container">
+            {% block contenido %}
 
-        {% endblock %}
-    </section>
+            {% endblock %}
+        </div>
+    
 
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="{% static 'js/main.js' %}"></script>

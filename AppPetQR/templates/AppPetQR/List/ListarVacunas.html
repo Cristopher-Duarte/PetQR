@@ -1,5 +1,16 @@
 {% extends 'Movil.html '%}
 
+{% block Menu %}
+    {% for datos in VacunaDate %}
+        <li><a href="{% url 'LVacunas'  datos.pk %}"><span></span>Vacunas</a></li>
+        <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
+        <li><a href="{% url 'desparacitacion' %}"><span></span>Desparacitacion</a></li>
+        <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
+        <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
+
+    {% endfor %}
+{% endblock %}
+
 
 
 {% block contenido %}
@@ -7,22 +18,25 @@
 
     <table>
         <tbody>
+            
             <tr>
                 <td>Nombre</td>
-                <td>Nicol</td>
+                <td>{{MascotaDate.nombre}}</td>
             </tr>
             <tr>
                 <td>Reza</td>
-                <td>Mestiza</td>
+                <td>{{MascotaDate.fk_raza.nombre}}</td>
             </tr>
             <tr>
                 <td>Edad</td>
-                <td>2 años</td>
+                <td>{{MascotaDate}}</td>
             </tr>
             <tr>
                 <td>Responsable</td>
-                <td>Luis alejandro</td>
+                <td>{{  MascotaDate.fk_usuario.nombre}}</td>
+                <td>{{  MascotaDate.fk_usuario.apellido}}</td>
             </tr>
+          
 
 
         </tbody>
