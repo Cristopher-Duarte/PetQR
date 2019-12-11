@@ -54,12 +54,6 @@ class GeneroMascota(models.Model):
         return self.nombre
 
 
-class Sticker(models.Model):
-    url = models.CharField(max_length=40)
-    lote = models.CharField(max_length=40)
-
-    def __str__(self):
-        return self.url
 
 
 class Usuario(models.Model):
@@ -111,7 +105,7 @@ class Mascotas(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     estado=models.BooleanField(default=True)
-    foto=models.ImageField(upload_to='photos/',default=True)
+    foto=models.ImageField(upload_to='Images/%Y', null=True, blank=True)
 
     fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
     fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE, db_column="fk_raza")
@@ -158,7 +152,7 @@ class InfoVacunas(models.Model):
 
     fecharegistro = models.DateField(auto_now_add = True)
     proximavacuna =  models.DateField()
-
+    sticker = models.ImageField(upload_to='Images/%Y/%m/%d', null=True, blank=True)
 
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
@@ -172,7 +166,7 @@ class InfoVacunas(models.Model):
 class DetalleInfoVacunas(models.Model):
     nombre= models.CharField(max_length=60)
     fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
-    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE, db_column="fk_sticker", null=True)
+    
 
 
 

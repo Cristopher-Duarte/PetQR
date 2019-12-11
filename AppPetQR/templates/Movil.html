@@ -8,8 +8,32 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/demo.css' %}">
     <link rel="stylesheet" href="{% static 'css/mov.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title></title>
-    
+    <script>
+    function Monstrar(){
+    document.getElementById('cont').style.display= "block";
+
+}
+function Ocultar(){
+    document.getElementById('cont').style.display= "none";
+}
+function Monstrar_Ocultar(){
+    var cont = document.getElementById('cont');
+
+    if(cont.style.display == "none"){
+        Monstrar();
+    }else{
+        Ocultar();
+    }
+}
+window.onload= function detalle(){
+    var $;
+    $('cont').animate({
+            down: '0'
+        });
+}
+    </script>
  
 </head>
 <body>

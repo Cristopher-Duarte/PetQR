@@ -16,9 +16,14 @@
 {% block contenido %}
 
 
-    <table>
+    <table class="mascota">
         <tbody>
             
+            <tr>
+                <td >
+                    <img src="{{MascotaDate.foto.url}}", height="100" , class="foto">
+                </td>
+            </tr> 
             <tr>
                 <td>Nombre</td>
                 <td>{{MascotaDate.nombre}}</td>
@@ -29,27 +34,26 @@
             </tr>
             <tr>
                 <td>Edad</td>
-                <td>{{MascotaDate}}</td>
+                <td>2 años</td>
             </tr>
             <tr>
                 <td>Responsable</td>
-                <td>{{  MascotaDate.fk_usuario.nombre}}</td>
-                <td>{{  MascotaDate.fk_usuario.apellido}}</td>
+                <td>{{MascotaDate.fk_usuario.nombre}}</td>
+                <td>{{MascotaDate.fk_usuario.apellido}}</td>
             </tr>
-          
 
 
         </tbody>
-
-        <img src="static/images/pet.jpg" class="foto"  />
     </table>
 
-    <table>
+    <p style="padding-bottom: 3em;"></p>
+
+    <table class="table" >
         <tr>
             <th>Nombre</th>
             <th>Fecha registro</th>
             <th>Fecha de Refuerzo</th>
-            <th>Datelle</th>
+            <th>Detalle</th>
 
         </tr>
 
@@ -59,12 +63,18 @@
                 <th>{{datos.fecharegistro}}</th>
                 <th>{{datos.proximavacuna}}</th>
                 
-                <th>Ver mas</th>
-
+                <th><input type="submit" value="Ver Mas" class="class="btn btn-primary" data-toggle="button" aria-pressed="false" onclick="Monstrar_Ocultar()"></th>
             </tr>
+            <tbody>
+                <tr id="cont" style="height:80%; background: black; display:none; width: 70%;">
+                    <td scope="row"><img src="{{Prueba.sticker.url}}", height="50", class="sticker", style="margin-left: 65%;"></td>
+                </tr>
+           </tbody>
 
-        {% endfor %}
 
     </table>
+    
+  
+    {% endfor %}
 
 {% endblock %}

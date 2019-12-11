@@ -212,7 +212,8 @@ class ListarVacunas(View):
     def get(self, request, pk):
         VacunaDate = InfoVacunas.objects.filter(fk_mascota=pk)
         MascotaDate = Mascotas.objects.get(id=pk)
-        return render(request,'AppPetQR/List/ListarVacunas.html', {'VacunaDate':VacunaDate, 'MascotaDate':MascotaDate})
+        Prueba = InfoVacunas.objects.get(fk_mascota=pk)
+        return render(request,'AppPetQR/List/ListarVacunas.html', {'VacunaDate':VacunaDate, 'MascotaDate':MascotaDate, 'Prueba':Prueba})
 
 
     def post(self, request, pk):
