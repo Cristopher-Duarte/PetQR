@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from AppPetQR.models import *
 from AppPetQR.Forms import *
+
 
 """
 from django.views.generic.edit import FormView
@@ -208,12 +209,30 @@ class RegistroVacunas(View):
 
 #---------------Listar---------------#
 
-class ListarVacunas(View):
+
+
+class MostrarMascotas(View):
+    def get(self, request, pk):
+        MascotasDate= Mascotas.objects.filter(fk_usuario = pk)
+        
+        print(MascotasDate)
+        print(id)
+        if len(MascotasDate)>1:
+            print(len(MascotasDate))
+
+        else:
+            MascotasDate= Mascotas.objects.filter(fk_usuario = pk)
+            return redirect(reverse('LVacunas',args=(MascotasDate[0])))
+
+
+
+
+class ListarVacunasMovil(View):
     def get(self, request, pk):
         VacunaDate = InfoVacunas.objects.filter(fk_mascota=pk)
         MascotaDate = Mascotas.objects.get(id=pk)
         Prueba = InfoVacunas.objects.get(fk_mascota=pk)
-        return render(request,'AppPetQR/List/ListarVacunas.html', {'VacunaDate':VacunaDate, 'MascotaDate':MascotaDate, 'Prueba':Prueba})
+        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate, 'MascotaDate':MascotaDate, 'Prueba':Prueba})
 
 
     def post(self, request, pk):
@@ -222,7 +241,7 @@ class ListarVacunas(View):
 
 class ListarDesparacitacion(View):
     def get(self, request, pk):
-        DesparacitacionDate = InfoDesparacitacion.objects.filter(fk_mascota=pk)
+        DesparacitacionDate = InfoDesparacitacion.objects.filter(fk_mascota=pk).all()
         return render(request,'AppPetQR/List/ListarDesparacitacion.html', {'DesparacitacionDate':DesparacitacionDate})
 
 
