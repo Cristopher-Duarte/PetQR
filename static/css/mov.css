@@ -5,6 +5,8 @@
 
 body {
 	background:#FFFFFA;
+	height: 100%;
+	
 }
 
 header {
@@ -47,14 +49,13 @@ header nav ul li a:hover {
 }
 .foto{
 	border-radius: none;
-	height: 100px;
-	width: 140px;
 	border: black 2px;
 	position:fixed;
 	margin-left: 70%;
 	padding-top: 5px;
 	padding-bottom: 2px;
 }
+
 
 section {
 	padding:20px;
@@ -64,6 +65,9 @@ section {
 	height: 100%;
 	padding: 0;
 	margin: 0;
+}
+.sticker{
+	margin-left: 70px;
 }
 
 @media screen and (max-width:800px )  {
@@ -109,7 +113,6 @@ section {
 		height: 100%;
 		padding: 0;
 		margin: 0;
-		background: gray;
 		padding-bottom: 5px;
 	}
 

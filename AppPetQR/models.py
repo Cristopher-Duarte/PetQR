@@ -63,7 +63,6 @@ class GeneroMascota(models.Model):
 
 
 
-
 class Usuario(models.Model):
     documento = models.CharField(max_length=40)
     nombre = models.CharField(max_length=40)
@@ -113,7 +112,8 @@ class Mascotas(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     estado=models.BooleanField(default=True)
-    foto=models.ImageField(upload_to='photos/')
+
+    foto=models.ImageField(upload_to='Images/%Y', null=True, blank=True)
 
     fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
     fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE, db_column="fk_raza")
@@ -138,30 +138,23 @@ class Producto(models.Model):
 
 class RecetaMedicas(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
-
-
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE, db_column="fk_medicoveterinario")
 
 
-
-
+    
 class DetalleRecetaMedica(models.Model):
-
-
     descripcion = models.CharField(max_length=60)
-
     fk_recetamedica = models.ForeignKey('RecetaMedicas', on_delete=models.CASCADE, db_column="fk_recetamedica")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
-
-
 
 class InfoVacunas(models.Model):
 
     fecharegistro = models.DateField(auto_now_add = True)
     proximavacuna =  models.DateField()
-    numeroregistro =models.IntegerField(max_length=11)
+    numeroregistro =models.IntegerField()
     
+    sticker = models.ImageField(upload_to='Images/%Y/%m/%d', null=True, blank=True)
 
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
@@ -177,7 +170,7 @@ class Efectos(models.Model):
 class DetalleInfoVacunas(models.Model):
     fk_efecto = models.ForeignKey('Efectos', on_delete=models.CASCADE, db_column="fk_efecto")
     fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
-   
+    
 
 
 
@@ -215,7 +208,3 @@ class Permission(models.Model):
             ('is_medico', _('Is Medico'))
 
         )
-
-
-
-

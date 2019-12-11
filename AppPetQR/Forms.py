@@ -104,7 +104,8 @@ class MascotaForm(forms.ModelForm):
             'fechanacimiento'   ,       
             'fk_especie'        ,
             'fk_raza'           ,
-            'fk_generomascota'  ,    
+            'fk_generomascota'  ,
+            'foto',
         ]
 
         labels={
@@ -112,7 +113,8 @@ class MascotaForm(forms.ModelForm):
             'fechanacimiento'   :   'fechanacimiento',       
             'fk_especie'        :   'Especie',
             'fk_raza'           :   'Raza',
-            'fk_generomascota'  :   'Genero',             
+            'fk_generomascota'  :   'Genero',  
+            'foto'                      :    'foto',           
         }
 
         widgets={
@@ -121,6 +123,7 @@ class MascotaForm(forms.ModelForm):
             'fk_especie'        :    forms.Select(attrs={'class':'form-control'}),   
             'fk_raza'           :    forms.Select(attrs={'class':'form-control'}),   
             'fk_generomascota'  :    forms.Select(attrs={'class':'form-control'}),   
+            'foto'                      :   forms.FileInput()
       
         }
 
@@ -197,6 +200,7 @@ class InfoVacunasForm(forms.ModelForm):
             'proximavacuna',
             'fk_producto',
             'numeroregistro',
+            
 
 
         ]
@@ -206,6 +210,7 @@ class InfoVacunasForm(forms.ModelForm):
             'proximavacuna'             :   'proxima vacuna',
             'fk_producto'               :   'Producto',
             'numeroregistro'            :    'numeroregistro',
+            
         }
         
         
@@ -213,6 +218,7 @@ class InfoVacunasForm(forms.ModelForm):
             'proximavacuna'             :   forms.TextInput(attrs={'class':'form-control'}),
             'fk_producto'               :   forms.Select(),
             'numeroregistro'            :   forms.TextInput(attrs={'class':'form-control'}),
+            
 
         }
 

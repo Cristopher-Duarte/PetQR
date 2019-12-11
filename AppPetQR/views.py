@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.urls import *
+from django.urls import reverse_lazy, reverse
 from AppPetQR.models import *
+from AppPetQR.models import InfoVacunas, Usuario
 from AppPetQR.Forms import *
 from django.contrib import *
 import json
 from django.http import *
+
 
 
 """
@@ -242,11 +244,36 @@ def Register(request):
 
 #---------------Listar---------------#
 
-class ListarVacunas(View):
-    def get(self, request, pk):
-        VacunaDate = InfoVacunas.objects.filter(fk_mascota=pk)
-        return render(request,'AppPetQR/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
 
+
+class MostrarMascotas(View):
+    def get(self, request, pk):
+        MascotasDate= Mascotas.objects.filter(fk_usuario = pk)
+        
+        print(MascotasDate)
+        print(id)
+        if len(MascotasDate)>1:
+            return render(request, 'AppPetQR/Movil/List/almacen.html', {'mascotadate': MascotasDate})
+
+        else:
+            
+            return redirect(reverse('LVacunas',kwargs={'pk':len(MascotasDate)}))
+
+
+
+
+class ListarVacunasMovil(View):
+    def get(self, request, pk):
+        
+        VacunaDate = InfoVacunas.objects.filter(fk_mascota=pk)
+        MascotaDate = Mascotas.objects.get(id=pk)
+        Prueba = InfoVacunas.objects.get(fk_mascota=pk)
+            
+
+       
+
+        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate, 'MascotaDate':MascotaDate, 'Prueba':Prueba}) 
+       
 
     def post(self, request, pk):
         pass
