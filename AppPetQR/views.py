@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.urls import reverse_lazy
+from django.urls import *
 from AppPetQR.models import *
 from AppPetQR.Forms import *
+from django.contrib import *
+import json
+from django.http import *
+
 
 """
 from django.views.generic.edit import FormView
@@ -11,6 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 """
+
 
 def Inicio(request):
     return render(request,"Movil.html")
@@ -29,6 +34,11 @@ def Almacen(request):
 
 def Recordatorio(request):
     return render(request,"AppPetQR/List/recordatorio.html")
+
+
+
+    
+
 
 
 #---------------Registros---------------#
@@ -52,9 +62,12 @@ class RegistroVeterinaria(View):
 
 
 class RegistroUsuario(View):
+
+
     def get(self,request, pk):
         FormularioU = UsuarioForm
         return render(request, 'AppPetQR/Register/RegistroUsuario.html',{'form':FormularioU})
+        
 
 
 
@@ -71,7 +84,9 @@ class RegistroUsuario(View):
             forms.fk_veterinaria = VeterinariaDate
 
             if FormularioU.is_valid():
+               
                 forms.save()
+                
                 return render(request, 'AppPetQR/Register/RegistroMedico.html',{'form':FormularioU})
 
 
@@ -174,37 +189,56 @@ class RegistroVacunas(View):
     def get(self, request, pk):
         id = TipoProducto.objects.filter(nombre="Medicamentos")
         FormularioV =InfoVacunasForm(id)
-        FormularioDV = DetalleInfoVacunasForm
-        return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV, 'form2':FormularioDV})
+
+        return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV})
 
 
     def post(self, request, pk):
         id = TipoProducto.objects.filter(nombre="Medicamentos")
         MascotasDate = Mascotas.objects.get(id=pk) #objecto de la veterinaria
-
         FormularioV = InfoVacunasForm(id, request.POST)
-        FormularioDV = DetalleInfoVacunasForm(request.POST)
-
         forms = FormularioV.save(commit=False)
-
-
         forms.fk_mascota = MascotasDate
-
         if FormularioV.is_valid():
             forms.save()
+
+            pk = len(InfoVacunas.objects.all())
+      
+            return redirect(reverse('RDatelleVacuna',kwargs={'pk': pk}))
+
+
+class RegistroDetalleVacuna(View):
+    def get(self, request, pk):
+        VacunaDate= InfoVacunas.objects.get(id=pk)
+        EfectosDate = Efectos.objects.all()
+        
+        return render(request, 'AppPetQR/Register/RegistroDetalleVacuna.html', {'Date':VacunaDate, 'DatosEfectos':EfectosDate})
+
+    def post(self, request, pk):
+        pass
+
+def Register(request):
+    if request.method == "POST":
+        data = request.body.decode('utf-8')
+        Data_json = json.loads(data)
+        #print(c)
+        data = Data_json[1:]
+        #print(data)
+        
+        for x in data:
+            efecto= Efectos.objects.get(id=x)
+            #print(efecto)
+            #print(c[0]["NumeroRegistro"])
+            VacunaDate= InfoVacunas.objects.get(numeroregistro=(Data_json[0]["NumeroRegistro"]))
+            #print(VacunaDate)
+            forms=DetalleInfoVacunas(fk_efecto=efecto, fk_infovacuna=VacunaDate)
+            forms.save()
+
+       
             
-            forms2 = FormularioDV.save(commit=False)
 
-            fk_vacuna= InfoVacunas.objects.get(id=(len(InfoVacunas.objects.all())))
 
-                
-
-            forms2.fk_infovacuna = fk_vacuna
-
-            forms2.save()
-
-        return render(request, 'AppPetQR/Register/RegistroVacunas.html',{'form':FormularioV, 'form2':FormularioDV})
-
+    return HttpResponse("bien")
 
 #---------------Listar---------------#
 
@@ -226,5 +260,6 @@ class ListarDesparacitacion(View):
 
     def post(self, request, pk):
         pass
+
 
 

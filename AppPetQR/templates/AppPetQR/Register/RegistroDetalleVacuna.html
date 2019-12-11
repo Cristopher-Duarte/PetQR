@@ -1,0 +1,45 @@
+{% extends 'Administrador.html '%}
+{% load static %}
+
+{% block cuerpo %}
+  
+        {% csrf_token %}
+        <label for="proximavacuna"></label>
+        <input type="text" name="proximavacuna" id="" value="{{ Date.proximavacuna }}" disabled=false>
+
+        <label for="productonombre"></label>
+        <input type="text" name="productonombre" id="" value="{{ Date.fk_producto.nombre }}" disabled=false>
+
+        
+        <label for="numeroregistro"></label>
+        <input type="text" name="numeroregistro" id="numeroregistro_id" value="{{ Date.numeroregistro }}" disabled=false>
+
+        <div>
+            <select id="izquierda" multiple>
+                {% for data in DatosEfectos %}
+                    <option value="{{data.id}}">{{data.nombre}}</option> 
+                {% endfor %}
+                </select>
+                <button onclick="Mover(2)"><<<<</button> 
+                <button onclick="Mover(1)">>>>></button>
+                <select id="derecha" multiple>
+            </select>
+        </div>
+ 
+
+     
+
+    <button id="boton"> hello</button>
+    <script src="{% static 'js/RegisterVacunas.js' %}"></script>
+
+
+
+    
+
+    
+    
+
+  
+
+
+{% endblock %}

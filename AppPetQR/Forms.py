@@ -160,18 +160,24 @@ class InfoDesparacitacionForm(forms.ModelForm):
         fields=[
             'proximadesparacitante',
             'fk_producto',
+            
         ]
         
 
         labels={
             'proximadesparacitante'     :   'proximadesparacitante',
             'fk_producto'               :   'Producto',
+            
+            
         }
+        
         
         
         widgets={
             'proximadesparacitante'     :   forms.TextInput(attrs={'class':'form-control'}),
-            'fk_producto'               :   forms.Select()
+            'fk_producto'               :   forms.SelectMultiple(),
+            
+            
 
         }
 
@@ -190,43 +196,26 @@ class InfoVacunasForm(forms.ModelForm):
         fields=[
             'proximavacuna',
             'fk_producto',
+            'numeroregistro',
+
+
         ]
         
 
         labels={
             'proximavacuna'             :   'proxima vacuna',
             'fk_producto'               :   'Producto',
+            'numeroregistro'            :    'numeroregistro',
         }
         
         
         widgets={
             'proximavacuna'             :   forms.TextInput(attrs={'class':'form-control'}),
-            'fk_producto'               :   forms.Select()
+            'fk_producto'               :   forms.Select(),
+            'numeroregistro'            :   forms.TextInput(attrs={'class':'form-control'}),
 
         }
 
-class DetalleInfoVacunasForm(forms.ModelForm):
-    class Meta:
-
-        model=DetalleInfoVacunas
-
-        fields=[
-            'nombre',
-            
-        ]
-        
-
-        labels={
-            'nombre'             :   'nombre',
-            
-        }
-        
-        
-        widgets={
-            'nombre'             :   forms.TextInput(attrs={'class':'form-control'}),
-            
-
-        }
 
 
 

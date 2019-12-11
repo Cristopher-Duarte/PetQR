@@ -26,12 +26,24 @@ urlpatterns = [
     path('RegistroMedico/<int:pk>',RegistroMedico.as_view(),name="RMedico"),
     path('RegistroProducto/<int:pk>',RegistroProducto.as_view(),name="RProducto"),
     path('RegistroDesparacitacion/<int:pk>',RegistroDesparacitacion.as_view(),name="RDesparacitacion"),
+
+    #Registro Vacunas
     path('RegistroVacunas/<int:pk>',RegistroVacunas.as_view(),name="RVacunas"),
+    path('RegistroDetalleVacuna/<int:pk>',RegistroDetalleVacuna.as_view(),name="RDatelleVacuna"),
+    path('RegistroDetalleVacuna/Register/',Register),
+    #Fin registro
+   
+    
     
 
     #------------------------Listas------------------------------------------------------------------#
     path('ListarVacunas/<int:pk>',ListarVacunas.as_view(),name="LVacunas"),
     path('ListarDesparacitacion/<int:pk>',ListarDesparacitacion.as_view(),name="LDesparacitacion"),
+
+
+
+
+    
 
 
 

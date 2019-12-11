@@ -7,7 +7,7 @@ admin.site.register(Raza)
 admin.site.register(TipoProducto)
 admin.site.register(Genero)
 admin.site.register(GeneroMascota)
-admin.site.register(Sticker)
+
 admin.site.register(Usuario)
 admin.site.register(Perfil)
 admin.site.register(MedicoVeterinaria)
