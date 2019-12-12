@@ -69,7 +69,6 @@ class RegistroVeterinaria(View):
                 Users.user_permissions.add(permiso)
                 Users.save()
                 Formulario.save()
-                success_url = reverse('login')
         else:
             Formulario = VeterinariaForm()
 
