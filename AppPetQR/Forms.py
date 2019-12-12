@@ -18,10 +18,10 @@ class VeterinariaForm(forms.ModelForm):
             'telefono' : 'Telefono',            
         }
         widgets = {
-            'nombre' : forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre Veterinaria'}),
-            'logo' : forms.TextInput(attrs={'class':'form-control'}),
+            'nombre'             : forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre Veterinaria'}),
+            'logo'               :  forms.TextInput(attrs={'class':'form-control'}),
             'correocoorporativo' : forms.TextInput(attrs={'class':'form-control','placeholder':'Correo Valido'}),
-            'telefono' : forms.TextInput(attrs={'class':'form-control','placeholder':'Telefono'}),
+            'telefono'           : forms.TextInput(attrs={'class':'form-control','placeholder':'Telefono'}),
         }
 
 
@@ -223,5 +223,35 @@ class InfoVacunasForm(forms.ModelForm):
         }
 
 
+class ControlesMedicosForm(forms.ModelForm):
+    
+    class Meta:
+    
+        model=ControlesMedicos
 
+        fields=[
+            'proximadesControl',
+            'numeroRegistro',
+            'observacion'
+            
+
+
+        ]
+        
+
+        labels={
+            'proximadesControl'         :   'proxima Control',
+            'numeroRegistro'            :    'numeroregistro',
+            'observacion'               :   'observacion',
+            
+        }
+        
+        
+        widgets={
+           'proximadesControl'            :   forms.TextInput(attrs={'class':'form-control'}),
+            'numeroRegistro'              :   forms.TextInput(),
+            'observacion'                 :   forms.TextInput(attrs={'class':'form-control'}),
+            
+
+        }
 

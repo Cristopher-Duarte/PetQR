@@ -1,10 +1,28 @@
 {% extends 'Administrador.html '%}
 
-{% block cuerpo %}
-    <form method="POST">
+
+
+
+
+{% block BtnMenu %}
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
+
+
+{% endblock %}
+
+
+
+{% block input %}
+
+    <form method="POST" action="">
         {% csrf_token %}
+
         {{ form.as_p }}
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" >Enviar</button>
     </form>
 
 {% endblock %}
+

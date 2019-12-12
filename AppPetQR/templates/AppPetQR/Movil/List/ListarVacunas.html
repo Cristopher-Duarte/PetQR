@@ -1,14 +1,13 @@
 {% extends 'Movil.html '%}
 
 {% block Menu %}
-    {% for datos in VacunaDate %}
-        <li><a href="{% url 'LVacunas'  datos.pk %}"><span></span>Vacunas</a></li>
+
+        <li><a href="{% url 'LVacunas'   %}"><span></span>Vacunas</a></li>
         <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
         <li><a href="{% url 'desparacitacion' %}"><span></span>Desparacitacion</a></li>
         <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
         <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
 
-    {% endfor %}
 {% endblock %}
 
 
@@ -63,8 +62,9 @@
                 <th>{{datos.fecharegistro}}</th>
                 <th>{{datos.proximavacuna}}</th>
                 
-                <th><input type="submit" value="Ver Mas" class="class="btn btn-primary" data-toggle="button" aria-pressed="false" onclick="Monstrar_Ocultar()"></th>
+                <th><input type="submit" value="Ver Mas" class="btn btn-primary" data-toggle="button" aria-pressed="false" onclick="Monstrar_Ocultar()"></th>
             </tr>
+        {% endfor %}
             <tbody>
                 <tr id="cont" style="height:80%; background: black; display:none; width: 70%;">
                     <td scope="row"><img src="", height="50", class="sticker", style="margin-left: 65%;"></td>
@@ -72,9 +72,10 @@
            </tbody>
 
 
+
     </table>
     
   
-    {% endfor %}
+    
 
 {% endblock %}

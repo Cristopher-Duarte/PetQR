@@ -1,0 +1,53 @@
+{% extends 'Administrador.html '%}
+
+
+
+
+
+{% block BtnMenu %}
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
+    <p><a href="#" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
+
+
+{% endblock %}
+
+
+
+
+{% block input %}
+    <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th scope="col">Documento</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha Nacimiento</th>
+            
+            <th scope="col"> Contacto</th>
+            <th scope="col"> Mascotas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+    
+          </tr>
+          {% for date in form %}
+          <tr>
+            
+            <td>{{date.documento}}</td>
+            <td>{{date.nombre}}</td>
+            <td>{{date.apellido}}</td>
+            <td>{{date.fechanacimiento}}</td>
+            <td>{{date.celular}}</td>
+            <td><a href="">Registrar Mascota</a></td>
+          </tr>
+          {% endfor %}
+
+          </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

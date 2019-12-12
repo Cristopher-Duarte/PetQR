@@ -136,17 +136,22 @@ class Producto(models.Model):
 
 
 
-class RecetaMedicas(models.Model):
+class ControlesMedicos(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
+    observacion = models.CharField(max_length= 250)
+    proximadesControl = models.DateField()
+    numeroRegistro = models.IntegerField()
+
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE, db_column="fk_medicoveterinario")
 
 
     
 class DetalleRecetaMedica(models.Model):
-    descripcion = models.CharField(max_length=60)
-    fk_recetamedica = models.ForeignKey('RecetaMedicas', on_delete=models.CASCADE, db_column="fk_recetamedica")
+    indicaciones = models.CharField(max_length=60)
+    fk_ControlMedico = models.ForeignKey('ControlesMedicos', on_delete=models.CASCADE, db_column="fk_ControlMedico")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
+
 
 class InfoVacunas(models.Model):
 

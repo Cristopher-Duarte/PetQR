@@ -30,15 +30,28 @@ urlpatterns = [
     #Registro Vacunas
     path('RegistroVacunas/<int:pk>',RegistroVacunas.as_view(),name="RVacunas"),
     path('RegistroDetalleVacuna/<int:pk>',RegistroDetalleVacuna.as_view(),name="RDatelleVacuna"),
-    path('RegistroDetalleVacuna/Register/',Register),
+    path('RegistroDetalleVacuna/Register/',RegisterVacuna),
     #Fin registro
+
+    #Registro Control Medico
+    path('RegistroControlMedico/<int:medico>/<int:mascota>',RegistroControlMedico.as_view(),name="RControlMedico"),
+    path('RegistroDetalleControlMedico/<int:pk>',RegistroDetalleControlMedico.as_view(),name="RDetalleControlMedico"),
+    path('RegistroDetalleControlMedico/Register',RegisterControlMedico),
+    #Fin Registro
    
     
     
 
     #------------------------Listas------------------------------------------------------------------#
     path('ListarVacunas/<int:pk>',ListarVacunasMovil.as_view(),name="LVacunas"),
-    path('ListarDesparacitacion/<int:pk>',ListarDesparacitacion.as_view(),name="LDesparacitacion"),
+    path('ListarDesparacitacion/<int:pk>',ListarDesparacitacionMovil.as_view(),name="LDesparacitacion"),
+
+
+    path('MostrarUsuario/',MostrarUsuario.as_view(),name="LMostrarUsuario"),
+    path('MostrarVacunas/',MostrarVacunas.as_view(),name="LMostrarVacunas"),
+    path('MostrarControlesMedicos/',MostrarControlesMedicos.as_view(),name="LMostrarControlesMedicos"),
+    path('MostrarDesparasitacion/',MostrarDesparasitacion.as_view(),name="LMostrarDesparasitacion"),
+
 
 
 
