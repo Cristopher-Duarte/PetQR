@@ -85,7 +85,6 @@ DATABASES = {
         'PASSWORD':'290817082319.',
         'HOST':'1005012521.mysql.pythonanywhere-services.com',
 
-
     }
 
 }
