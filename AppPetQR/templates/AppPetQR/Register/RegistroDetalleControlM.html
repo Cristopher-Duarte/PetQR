@@ -1,0 +1,26 @@
+{% extends 'indexAdmin.html '%}
+
+
+
+{% block input %}
+ 
+
+    <div>
+        <label for="Medicamentos"></label>
+        <select name="Medicamentos" id="Medicamentos_">
+            {%for date in MedicamentoDate %}
+                <option value="{{date.id}}">{{date.nombre}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="Indicaciones"></label>
+        <input type="text" name="Indicaciones" id="Indicaciones_id">
+
+    </div>
+
+
+    
+
+
+
+{% endblock %}

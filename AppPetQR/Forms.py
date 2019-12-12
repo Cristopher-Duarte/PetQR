@@ -178,7 +178,7 @@ class InfoDesparacitacionForm(forms.ModelForm):
         
         widgets={
             'proximadesparacitante'     :   forms.TextInput(attrs={'class':'form-control'}),
-            'fk_producto'               :   forms.SelectMultiple(),
+            'fk_producto'               :   forms.Select(),
             
             
 
@@ -250,7 +250,7 @@ class ControlesMedicosForm(forms.ModelForm):
         widgets={
            'proximadesControl'            :   forms.TextInput(attrs={'class':'form-control'}),
             'numeroRegistro'              :   forms.TextInput(),
-            'observacion'                 :   forms.TextInput(attrs={'class':'form-control'}),
+            'observacion'                 :   forms.Textarea(attrs={'class':'form-control'}),
             
 
         }

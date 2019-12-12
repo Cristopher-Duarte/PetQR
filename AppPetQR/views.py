@@ -6,6 +6,7 @@ from AppPetQR.models import InfoVacunas, Usuario
 from AppPetQR.Forms import *
 from django.contrib import *
 import json
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import *
 from django.contrib.auth.models import Permission, User
 from AppPetQR.VerificarUsuario import Verificador
@@ -57,9 +58,9 @@ class RegistroVeterinaria(View):
     def post(self, request):
         if request.method == 'POST':
             Formulario = VeterinariaForm(request.POST)
-            username=request.POST.get("documento")
+            username=request.POST.get("nombre")
             password = str(username)+"QR"
-            permiso = Permission.objects.get(name="Is Usuario")
+            permiso = Permission.objects.get(name="Is Admin")
             decision = Verificador("ADMIN", str(username))
 
 
@@ -143,7 +144,6 @@ class RegistroMedico(View):
                 return render(request, 'AppPetQR/Register/RegistroMedico.html',{'form':FormularioU})
 
 
-
 class RegistroMascotas(View):
     def get(self, request, pk):
         FormularioM = MascotaForm
@@ -163,7 +163,7 @@ class RegistroMascotas(View):
 
         if FormularioM.is_valid():
             forms.save()
-            return render(request, 'AppPetQR/Register/RegistroUsuario.html',{'form':FormularioM})
+            return redirect(reverse('LMostrarMascotas'))
 
 class RegistroProducto(View):
 
@@ -185,7 +185,7 @@ class RegistroProducto(View):
 
         if FormularioP.is_valid():
             forms.save()
-            return render(request, 'AppPetQR/Register/RegistroProducto.html',{'form':FormularioP})       
+            return redirect(reverse('LMostrarProducto'))
 
 class RegistroDesparacitacion(View):
 
@@ -240,22 +240,22 @@ class RegistroDetalleVacuna(View):
         
         return render(request, 'AppPetQR/Register/RegistroDetalleVacuna.html', {'Date':VacunaDate, 'DatosEfectos':EfectosDate})
 
-    def post(self, request, pk):
-        pass
 
 class RegistroControlMedico(View):
-    def get(self, request, medico,mascota):
+    def get(self, request, mascota):
         FormularioCM=ControlesMedicosForm
 
         return render(request, 'AppPetQR/Register/RegistroControlMedico.html',{'form':FormularioCM})
 
-    def post(self, request, medico,mascota):    
+    def post(self, request, mascota):    
         MascotasDate = Mascotas.objects.get(id=mascota)
-        MedicoDate= MedicoVeterinaria.objects.get(id=medico)
+        user= request.user.username
+
+        MedicoDate= MedicoVeterinaria.objects.get(nombre=user)
 
         FormularioCM=ControlesMedicosForm(request.POST)
         forms= FormularioCM.save(commit=False)
-        forms.fk_mascota = MedicoDate
+        forms.fk_mascota = MascotasDate
         forms.fk_medicoveterinario = MedicoDate
         if FormularioCM.is_valid():
             forms.save()
@@ -271,8 +271,6 @@ class RegistroDetalleControlMedico(View):
         
         return render(request, 'AppPetQR/Register/RegistroControlMedico.html', {"MedicamentoDate":MedicamentoDate, "ControlMedicoDate":ControlMedicoDate})
 
-    def post(self, request, pk):
-        pass
 
 
 def RegisterControlMedico(request):
@@ -314,25 +312,6 @@ def RegisterVacuna(request):
 
 #---------------Listar Movil---------------#
 
-
-
-class MostrarMascotas(View):
-    def get(self, request, pk):
-        MascotasDate= Mascotas.objects.filter(fk_usuario = pk)
-        
-        print(MascotasDate)
-        print(id)
-        if len(MascotasDate)>1:
-            return render(request, 'AppPetQR/Movil/List/almacen.html', {'mascotadate': MascotasDate})
-
-        else:
-            
-            return redirect(reverse('LVacunas',kwargs={'pk':len(MascotasDate)}))
-        
-
-
-
-
 class ListarVacunasMovil(View):
     def get(self, request):
         
@@ -347,7 +326,7 @@ class ListarDesparacitacionMovil(View):
         DesparacitacionDate = InfoDesparacitacion.objects.all()
         return render(request,'AppPetQR/Movil/List/ListarDesparacitacion.html', {'DesparacitacionDate':DesparacitacionDate})
 
-class ListarControlMedicoMedico(View):
+class ListarControlMedicoMedicoMovil(View):
     def get(self, request):
         pass
 
@@ -357,23 +336,67 @@ class ListarControlMedicoMedico(View):
 class MostrarUsuario(View):
     def get(self, request):
         UsuarioDate= Usuario.objects.all()
-        return render(request, 'AppPetQR/List/MostrarUsuario.html', {'form':UsuarioDate})
+        user= request.user.username
+        pk = Veterinaria.objects.get(nombre=user)
+        return render(request, 'AppPetQR/List/MostrarUsuario.html', {'form':UsuarioDate, 'user':pk})
 
 class MostrarVacunas(View):
     def get(self, request):
         VacunasDate= InfoVacunas.objects.all()
-        return render(request, 'AppPetQR/List/MostrarVacunas.html', {'form':VacunasDate})
+        user= request.user.username
+        pk = Veterinaria.objects.get(nombre=user)
+        return render(request, 'AppPetQR/List/MostrarVacunas.html', {'form':VacunasDate, 'user':pk})
 
 class MostrarControlesMedicos(View):
     def get(self, request):
         ControleMedicosDate= ControlesMedicos.objects.all()
+        user= request.user.username
+        pk = Veterinaria.objects.get(nombre=user)
         return render(request, 'AppPetQR/List/MostrarControlMedico.html', {'form':ControleMedicosDate})
 
 class MostrarDesparasitacion(View):
     def get(self, request):
+        user= request.user.username
+        pk = Veterinaria.objects.get(nombre=user)
         InfoDesparacitacionDate=InfoDesparacitacion.objects.all()
-        return render(request, 'AppPetQR/List/MostrarDesparasitacion.html', {'form':InfoDesparacitacionDate})
+        return render(request, 'AppPetQR/List/MostrarDesparasitacion.html', {'form':InfoDesparacitacionDate, 'user':pk})
+
+class MostrarMascotas(View):
+    def get(self, request):
+        user= request.user.username   
+        pk = Veterinaria.objects.get(nombre=user)
+        MascotaDate = Mascotas.objects.all()
+        return render(request, 'AppPetQR/List/MostrarMascotas.html', {'form':MascotaDate, 'user':pk})
 
 
+class MostrarProducto(View):
+    def get(self, request):
+        user= request.user.username   
+        pk = Veterinaria.objects.get(nombre=user)
+        ProductoDate = Producto.objects.all()
+        return render(request, 'AppPetQR/List/MostrarProducto.html', {'form':ProductoDate, 'user':pk})
 
+
+@login_required
+def home (request):
+    user = request.user
+    if user.has_perm('AppPetQR.is_usuario'):
+        return redirect(reverse('IndexUsuarios'))
+    elif user.has_perm('AppPetQR.is_admin'):
+        return redirect(reverse('IndexAdmin'))
+    elif user.has_perm('AppPetQR.is_doctor'):
+        return redirect('IndexDoctor')
+    
+
+@permission_required('AppPetQR.is_usuario')
+def Index_Usuario (request):
+    return render (request, template_name='AppPetQR/IndexUsuario.html')
+
+@permission_required('AppPetQR.is_admin')
+def Index_Admin(request):
+    return render (request, template_name='AppPetQR/indexAdmin.html')
+
+@permission_required('AppPetQR.is_medico')
+def Index_Doctor (request):
+    return render(request, template_name='AppPetQR/indexDoctor.html')
 

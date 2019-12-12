@@ -5,13 +5,15 @@
 
 
 {% block BtnMenu %}
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
+<p><a href="{% url 'LMostrarUsuario'   %}" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
+<p><a href="{% url 'LMostrarVacunas'   %}" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
+<p><a href="{% url 'LMostrarDesparasitacion'   %}" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
+<p><a href="{% url 'LMostrarControlesMedicos'   %}" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
+<p><a href="{% url 'LMostrarProducto'   %}" class="btn ColorBoton list-group-item-action">Productos</a></p>
 
 
 {% endblock %}
+
 
 
 
@@ -34,20 +36,25 @@
     
           </tr>
           {% for date in form %}
-          <tr>
-            
-            <td>{{date.documento}}</td>
-            <td>{{date.nombre}}</td>
-            <td>{{date.apellido}}</td>
-            <td>{{date.fechanacimiento}}</td>
-            <td>{{date.celular}}</td>
-            <td><a href="">Registrar Mascota</a></td>
-          </tr>
+          {% if date.fk_veterinaria == user %}
+            <tr>
+              
+              <td>{{date.documento}}</td>
+              <td>{{date.nombre}}</td>
+              <td>{{date.apellido}}</td>
+              <td>{{date.fechanacimiento}}</td>
+              <td>{{date.celular}}</td>
+              <td><a href="{% url 'RMascota'  date.id %}">Registrar Mascota</a></td>
+            </tr>
+            {% endif %}
           {% endfor %}
+          
 
           </tr>
         </tbody>
     </table>
+
+    <p><a href="{% url 'RUsuario'  user.id %}">Agregar Un Nuevo Cliente</a></p>
 
 
 {% endblock %}

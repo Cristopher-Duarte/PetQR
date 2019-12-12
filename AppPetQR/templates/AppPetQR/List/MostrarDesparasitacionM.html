@@ -1,5 +1,4 @@
-{% extends 'Administrador.html '%}
-
+{% extends 'indexDoctor.html '%}
 
 
 
@@ -23,13 +22,13 @@
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Documento</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
+            <th scope="col">Responsable</th>
+            <th scope="col">Mascota</th>
+            <th scope="col">Fecha Registro</th>
             <th scope="col">Fecha Nacimiento</th>
             
-            <th scope="col"> Contacto</th>
-            <th scope="col"> Mascotas</th>
+            <th scope="col"> Medicamento</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -44,13 +43,14 @@
             <td>{{date.apellido}}</td>
             <td>{{date.fechanacimiento}}</td>
             <td>{{date.celular}}</td>
-            <td><a href="">Registrar Mascota</a></td>
+            
           </tr>
           {% endfor %}
 
           </tr>
         </tbody>
     </table>
+    <p><a href="{% url 'RDesparacitacion'  user.id %}">Agregar un nuevo desparasitante</a></p>
 
 
 {% endblock %}

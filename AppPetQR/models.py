@@ -149,6 +149,7 @@ class ControlesMedicos(models.Model):
     
 class DetalleRecetaMedica(models.Model):
     indicaciones = models.CharField(max_length=60)
+    observaciones = models.CharField(max_length=200)
     fk_ControlMedico = models.ForeignKey('ControlesMedicos', on_delete=models.CASCADE, db_column="fk_ControlMedico")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 

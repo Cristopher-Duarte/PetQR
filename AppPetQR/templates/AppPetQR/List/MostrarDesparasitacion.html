@@ -1,17 +1,9 @@
-{% extends 'Administrador.html '%}
+{% extends 'IndexAdmin.html '%}
 
 
 
 
 
-{% block BtnMenu %}
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
-    <p><a href="#" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
-
-
-{% endblock %}
 
 
 
@@ -20,13 +12,13 @@
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Documento</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
+            <th scope="col">Responsable</th>
+            <th scope="col">Mascota</th>
+            <th scope="col">Fecha Registro</th>
             <th scope="col">Fecha Nacimiento</th>
             
-            <th scope="col"> Contacto</th>
-            <th scope="col"> Mascotas</th>
+            <th scope="col"> Medicamento</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -34,20 +26,24 @@
     
           </tr>
           {% for date in form %}
+          {% if date.fk_mascota.fk_usuario.fk_veterinaria == user%}
           <tr>
             
-            <td>{{date.documento}}</td>
+            <td>{{date.fk_mascota.fk_usuariodocumento}}</td>
             <td>{{date.nombre}}</td>
             <td>{{date.apellido}}</td>
             <td>{{date.fechanacimiento}}</td>
             <td>{{date.celular}}</td>
-            <td><a href="">Registrar Mascota</a></td>
+            
           </tr>
+          {% endif %}
+
           {% endfor %}
 
           </tr>
         </tbody>
     </table>
+    <p><a href="{% url 'RDesparacitacion'  user.id %}">Agregar un nuevo desparasitante</a></p>
 
 
 {% endblock %}

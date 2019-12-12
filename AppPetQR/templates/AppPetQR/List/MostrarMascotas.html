@@ -1,5 +1,4 @@
-{% extends 'Administrador.html '%}
-
+{% extends 'IndexAdmin.html '%}
 
 
 
@@ -23,13 +22,14 @@
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Documento</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Responsable</th>
+            <th scope="col">Fecha Registro</th>
+            <th scope="col">Vacunas</th>
+            <th scope="col">Desparasitantes</th>
             
-            <th scope="col"> Contacto</th>
-            <th scope="col"> Mascotas</th>
+            <th scope="col"> Controles Medicos</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -37,15 +37,19 @@
     
           </tr>
           {% for date in form %}
+
+          {% if date.fk_usuario.fk_veterinaria == user %}
           <tr>
             
-            <td>{{date.documento}}</td>
             <td>{{date.nombre}}</td>
-            <td>{{date.apellido}}</td>
-            <td>{{date.fechanacimiento}}</td>
-            <td>{{date.celular}}</td>
-            <td><a href="">Registrar Mascota</a></td>
+            <td>{{date.fk_usuario.nombre}}</td>
+            <td>{{date.fecharegistro}}</td>
+          
+            <td><a href="{%url 'RVacunas' date.id %}">Registrar Vacunas</a></td>
+            <td><a href="{%url 'RDesparacitacion' date.id %}">Registrar Desparacitantes</a></td>
+
           </tr>
+          {% endif %}
           {% endfor %}
 
           </tr>
