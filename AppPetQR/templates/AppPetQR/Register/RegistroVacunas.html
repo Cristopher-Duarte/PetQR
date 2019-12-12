@@ -1,12 +1,25 @@
-{% extends 'Administrador.html '%}
+{% extends 'indexAdmin.html '%}
+{% load static %}
+
 
 {% block cuerpo %}
-    <form method="POST">
+    <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        
-        {{ form2.as_p }}
-        <button type="submit">Enviar</button>
+
+
+
+
+        <button type="submit" >Enviar</button>
     </form>
+
+
+    
+
+    
+    
+
+  
+
 
 {% endblock %}

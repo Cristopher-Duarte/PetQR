@@ -1,10 +1,19 @@
-{% extends 'Administrador.html '%}
+{% extends 'indexAdmin.html '%}
 
-{% block cuerpo %}
-    <form method="POST">
+
+
+
+
+
+
+
+{% block input %}
+
+    <form method="POST" action="">
         {% csrf_token %}
+
         {{ form.as_p }}
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" >Enviar</button>
     </form>
 
 {% endblock %}

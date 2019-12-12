@@ -1,0 +1,90 @@
+
+
+#Top, #Center{
+    width: 100%;
+    
+}
+#Menu{
+
+    width: auto;
+    margin: 0.5em 0em 0.2em 1.5em;
+    height: max-content;
+}
+#Table{
+    margin-top: 5em;
+}
+
+#Top_Boton{
+    margin-top: 2em;
+    margin-left: 0;
+}
+
+#btnnav1{
+
+    margin-top: 4em;
+    margin-bottom: 3em;
+    padding-right: 0;
+}
+
+#btnnav2{
+
+    padding-left: 0;
+    margin-top: 4em;
+    margin-bottom: 3em;
+}
+
+
+#CenterBoton{
+    margin-top: 2em;
+    padding: 0em 0.5em;
+}
+
+.ColorBoton{
+    background: rgb(93, 192, 214);
+    border: 1px solid rgb(138, 175, 175);
+    color: white;
+}
+
+.ColorBotonNav{
+    background: rgb(154, 199, 171);
+    border: 1px solid rgb(138, 175, 175);
+    color: white;
+}
+
+.ColorBotonNav-outline{
+    border: 1px solid rgb(154, 199, 171);
+}
+
+.ColorBotonNav-outline:hover{
+    color: black;
+    background: rgb(154, 199, 171);
+    border: 1px solid rgb(154, 199, 171);
+
+
+}
+
+
+#CenterIzaquierdo{
+    background:#EABAB3 ;
+}
+
+#CenterIzaquierdo{
+    background:#EECAB5 ;
+}
+
+#Top{
+    background:#25323A;
+} 
+
+#Top_Foto{
+    margin: 3em;
+    border-radius: 50%;
+}
+
+#Center{
+    background:rgba(234, 229, 233, 0.418);
+}
+
+body{
+    height: 100%;
+}

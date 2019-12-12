@@ -18,10 +18,10 @@ class VeterinariaForm(forms.ModelForm):
             'telefono' : 'Telefono',            
         }
         widgets = {
-            'nombre' : forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre Veterinaria'}),
-            'logo' : forms.TextInput(attrs={'class':'form-control'}),
+            'nombre'             : forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre Veterinaria'}),
+            'logo'               :  forms.TextInput(attrs={'class':'form-control'}),
             'correocoorporativo' : forms.TextInput(attrs={'class':'form-control','placeholder':'Correo Valido'}),
-            'telefono' : forms.TextInput(attrs={'class':'form-control','placeholder':'Telefono'}),
+            'telefono'           : forms.TextInput(attrs={'class':'form-control','placeholder':'Telefono'}),
         }
 
 
@@ -104,7 +104,8 @@ class MascotaForm(forms.ModelForm):
             'fechanacimiento'   ,       
             'fk_especie'        ,
             'fk_raza'           ,
-            'fk_generomascota'  ,    
+            'fk_generomascota'  ,
+            'foto',
         ]
 
         labels={
@@ -112,7 +113,8 @@ class MascotaForm(forms.ModelForm):
             'fechanacimiento'   :   'fechanacimiento',       
             'fk_especie'        :   'Especie',
             'fk_raza'           :   'Raza',
-            'fk_generomascota'  :   'Genero',             
+            'fk_generomascota'  :   'Genero',  
+            'foto'                      :    'foto',           
         }
 
         widgets={
@@ -121,6 +123,7 @@ class MascotaForm(forms.ModelForm):
             'fk_especie'        :    forms.Select(attrs={'class':'form-control'}),   
             'fk_raza'           :    forms.Select(attrs={'class':'form-control'}),   
             'fk_generomascota'  :    forms.Select(attrs={'class':'form-control'}),   
+            'foto'                      :   forms.FileInput()
       
         }
 
@@ -160,18 +163,24 @@ class InfoDesparacitacionForm(forms.ModelForm):
         fields=[
             'proximadesparacitante',
             'fk_producto',
+            
         ]
         
 
         labels={
             'proximadesparacitante'     :   'proximadesparacitante',
             'fk_producto'               :   'Producto',
+            
+            
         }
+        
         
         
         widgets={
             'proximadesparacitante'     :   forms.TextInput(attrs={'class':'form-control'}),
-            'fk_producto'               :   forms.Select()
+            'fk_producto'               :   forms.Select(),
+            
+            
 
         }
 
@@ -190,43 +199,59 @@ class InfoVacunasForm(forms.ModelForm):
         fields=[
             'proximavacuna',
             'fk_producto',
+            'numeroregistro',
+            
+
+
         ]
         
 
         labels={
             'proximavacuna'             :   'proxima vacuna',
             'fk_producto'               :   'Producto',
+            'numeroregistro'            :    'numeroregistro',
+            
         }
         
         
         widgets={
             'proximavacuna'             :   forms.TextInput(attrs={'class':'form-control'}),
-            'fk_producto'               :   forms.Select()
+            'fk_producto'               :   forms.Select(),
+            'numeroregistro'            :   forms.TextInput(attrs={'class':'form-control'}),
+            
 
         }
 
-class DetalleInfoVacunasForm(forms.ModelForm):
-    class Meta:
 
-        model=DetalleInfoVacunas
+class ControlesMedicosForm(forms.ModelForm):
+    
+    class Meta:
+    
+        model=ControlesMedicos
 
         fields=[
-            'nombre',
+            'proximadesControl',
+            'numeroRegistro',
+            'observacion'
             
+
+
         ]
         
 
         labels={
-            'nombre'             :   'nombre',
+            'proximadesControl'         :   'proxima Control',
+            'numeroRegistro'            :    'numeroregistro',
+            'observacion'               :   'observacion',
             
         }
         
         
         widgets={
-            'nombre'             :   forms.TextInput(attrs={'class':'form-control'}),
+           'proximadesControl'            :   forms.TextInput(attrs={'class':'form-control'}),
+            'numeroRegistro'              :   forms.TextInput(),
+            'observacion'                 :   forms.Textarea(attrs={'class':'form-control'}),
             
 
         }
-
-
 

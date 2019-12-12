@@ -1,0 +1,11 @@
+{% extends 'Movil.html '%}
+
+{% block Menu %}
+
+        <li><a href="{% url 'LVacunas'   %}"><span></span>Vacunas</a></li>
+        <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
+        <li><a href="{% url 'desparacitacion' %}"><span></span>Desparacitacion</a></li>
+        <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
+        <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
+
+{% endblock %}

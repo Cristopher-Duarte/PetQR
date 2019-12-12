@@ -21,12 +21,15 @@ class Veterinaria(models.Model):
 
 
 class Especie(models.Model):
+    Raza=[(1, "Canino"),(2, "Felino")]
     especie = models.CharField(max_length=40)
 
     def __str__(self):
         return self.especie
 
 class Raza(models.Model):
+    
+
     nombre = models.CharField(max_length=40)
 
     def __str__(self):
@@ -34,7 +37,9 @@ class Raza(models.Model):
 
 
 class TipoProducto(models.Model):
-    nombre = models.CharField(max_length=40)
+    TipoProducto=[(1, "Comida"),(2, "Medicamentos"),(3, "Aseo")]
+
+    nombre = models.CharField(max_length=40, choices=TipoProducto, default=1)
     
 
     def __str__(self):
@@ -42,24 +47,20 @@ class TipoProducto(models.Model):
 
 
 class Genero(models.Model):
-    nombre = models.CharField(max_length=40)
+    Genero_tupla=[(1, "Hombre"),(2, "Mujer")]
+    nombre = models.CharField(max_length=40, choices=Genero_tupla, default=1)
 
     def __str__(self):
         return self.nombre
 
 class GeneroMascota(models.Model):
-    nombre = models.CharField(max_length=40)
+    GeneroMascota=[(1, "Macho"),(2, "Hembra")]
+    nombre = models.CharField(max_length=40, choices=GeneroMascota, default=1)
 
     def __str__(self):
         return self.nombre
 
 
-class Sticker(models.Model):
-    url = models.CharField(max_length=40)
-    lote = models.CharField(max_length=40)
-
-    def __str__(self):
-        return self.url
 
 
 class Usuario(models.Model):
@@ -111,7 +112,8 @@ class Mascotas(models.Model):
     fechanacimiento =  models.DateField()
     fecharegistro = models.DateField(auto_now_add = True)
     estado=models.BooleanField(default=True)
-    foto=models.ImageField(upload_to='photos/')
+
+    foto=models.ImageField(upload_to='Images/%Y', null=True, blank=True)
 
     fk_especie = models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
     fk_raza = models.ForeignKey('Raza', on_delete=models.CASCADE, db_column="fk_raza")
@@ -134,45 +136,47 @@ class Producto(models.Model):
 
 
 
-class RecetaMedicas(models.Model):
+class ControlesMedicos(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
-
+    observacion = models.CharField(max_length= 250)
+    proximadesControl = models.DateField()
+    numeroRegistro = models.IntegerField()
 
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE, db_column="fk_medicoveterinario")
 
 
-
-
+    
 class DetalleRecetaMedica(models.Model):
-
-
-    descripcion = models.CharField(max_length=60)
-
-    fk_recetamedica = models.ForeignKey('RecetaMedicas', on_delete=models.CASCADE, db_column="fk_recetamedica")
+    indicaciones = models.CharField(max_length=60)
+    observaciones = models.CharField(max_length=200)
+    fk_ControlMedico = models.ForeignKey('ControlesMedicos', on_delete=models.CASCADE, db_column="fk_ControlMedico")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
-
 
 
 class InfoVacunas(models.Model):
 
     fecharegistro = models.DateField(auto_now_add = True)
     proximavacuna =  models.DateField()
-
+    numeroregistro =models.IntegerField()
+    
+    sticker = models.ImageField(upload_to='Images/%Y/%m/%d', null=True, blank=True)
 
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
 
- 
-
+class Efectos(models.Model):
+    nombre = models.CharField(max_length=40)
+    
+    
 
     
 
 class DetalleInfoVacunas(models.Model):
-    nombre= models.CharField(max_length=60)
+    fk_efecto = models.ForeignKey('Efectos', on_delete=models.CASCADE, db_column="fk_efecto")
     fk_infovacuna = models.ForeignKey('InfoVacunas', on_delete=models.CASCADE, db_column="fk_infovacuna")
-    fk_sticker = models.ForeignKey('Sticker', on_delete=models.CASCADE, db_column="fk_sticker", null=True)
+    
 
 
 
@@ -210,7 +214,3 @@ class Permission(models.Model):
             ('is_medico', _('Is Medico'))
 
         )
-
-
-
-
