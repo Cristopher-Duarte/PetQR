@@ -1,4 +1,5 @@
 {% extends 'indexAdmin.html '%}
+{% load static %}
 
 
 
@@ -10,16 +11,20 @@
 
 {% block input %}
 
-{% csrf_token %}
+    {% csrf_token %}
+    
+    {% if date.fk_mascota.fk_usuario.fk_veterinaria == user %}
     <label for="proximavacuna"></label>
-    <input type="text" name="proximavacuna" id="" value="{{ Date.proximavacuna }}" disabled=false>
+    <input type="text" name="proximavacuna" id="" value="{{ date.proximavacuna }}" disabled=false>
 
     <label for="productonombre"></label>
-    <input type="text" name="productonombre" id="" value="{{ Date.fk_producto.nombre }}" disabled=false>
+    <input type="text" name="productonombre" id="" value="{{ date.fk_producto.nombre }}" disabled=false>
 
 
     <label for="numeroregistro"></label>
-    <input type="text" name="numeroregistro" id="numeroregistro_id" value="{{ Date.numeroregistro }}" disabled=false>
+    <input type="text" name="numeroregistro" id="numeroregistro_id" value="{{ date.numeroregistro }}" disabled=false>
+    {% endif %}
+   
 
     <div>
         <select id="izquierda" multiple>
@@ -36,8 +41,9 @@
 
 
 
-    <button id="boton"> hello</button>
+    <button id="boton"> Registrar</button>
     <script src="{% static 'js/RegisterVacunas.js' %}"></script>
-
-
 {% endblock %}
+    
+
+
