@@ -2,24 +2,24 @@ create database PetQR;
 use PetQR;
 
 
-insert into apppetqr_raza values(1, "Mestiza");
-insert into apppetqr_raza values(2, "Labrador");
-insert into apppetqr_raza values(3, "Pitbull");
-insert into apppetqr_raza values(4, "Pastor Aleman");
-insert into apppetqr_raza values(5, "Chiguagua");
-insert into apppetqr_raza values(6, "Pincher");
-insert into apppetqr_raza values(7, "Labradoodle");
+insert into AppPetQR_raza values(1, "Mestiza");
+insert into AppPetQR_raza values(2, "Labrador");
+insert into AppPetQR_raza values(3, "Pitbull");
+insert into AppPetQR_raza values(4, "Pastor Aleman");
+insert into AppPetQR_raza values(5, "Chiguagua");
+insert into AppPetQR_raza values(6, "Pincher");
+insert into AppPetQR_raza values(7, "Labradoodle");
 
-insert into apppetqr_generomascota values(1, "Macho");
-insert into apppetqr_generomascota values(2, "Hembra");
+insert into AppPetQR_generomascota values(1, "Macho");
+insert into AppPetQR_generomascota values(2, "Hembra");
 
-insert into apppetqr_genero values(1, "Hombre");
-insert into apppetqr_genero values(2, "Mujer");
+insert into AppPetQR_genero values(1, "Hombre");
+insert into AppPetQR_genero values(2, "Mujer");
 
 
-insert into apppetqr_especie values(1, "Canino");
-insert into apppetqr_especie values(2, "Felino");
+insert into AppPetQR_especie values(1, "Canino");
+insert into AppPetQR_especie values(2, "Felino");
 
-insert into apppetqr_tipoproducto values(1, "Comida");
-insert into apppetqr_tipoproducto values(2, "Medicamentos");
-insert into apppetqr_tipoproducto values(3, "Aseo");
+insert into AppPetQR_tipoproducto values(1, "Comida");
+insert into AppPetQR_tipoproducto values(2, "Medicamentos");
+insert into AppPetQR_tipoproducto values(3, "Aseo");
