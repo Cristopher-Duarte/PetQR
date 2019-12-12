@@ -80,10 +80,14 @@ WSGI_APPLICATION = 'ProyectoPetQR.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '1005012521$PetQR',
+        'NAME': '1005012521$PetQR2',
         'USER': '1005012521',
         'PASSWORD':'290817082319.',
         'HOST':'1005012521.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+                'sql_mode': 'traditional',
+
+            }
 
     }
 
