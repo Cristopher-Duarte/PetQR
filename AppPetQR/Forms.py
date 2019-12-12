@@ -199,7 +199,7 @@ class InfoVacunasForm(forms.ModelForm):
         fields=[
             'proximavacuna',
             'fk_producto',
-            'numeroregistro',
+            
             
 
 
@@ -209,7 +209,7 @@ class InfoVacunasForm(forms.ModelForm):
         labels={
             'proximavacuna'             :   'proxima vacuna',
             'fk_producto'               :   'Producto',
-            'numeroregistro'            :    'numeroregistro',
+            
             
         }
         
@@ -217,7 +217,7 @@ class InfoVacunasForm(forms.ModelForm):
         widgets={
             'proximavacuna'             :   forms.TextInput(attrs={'class':'form-control'}),
             'fk_producto'               :   forms.Select(),
-            'numeroregistro'            :   forms.TextInput(attrs={'class':'form-control'}),
+            
             
 
         }

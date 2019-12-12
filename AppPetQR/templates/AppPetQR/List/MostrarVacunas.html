@@ -23,13 +23,13 @@
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Documento</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Fecha Registro</th>
+            <th scope="col">Proxima Vacuna</th>
+            <th scope="col">Medicamento</th>
+            <th scope="col">Detalle</th>
             
-            <th scope="col"> Contacto</th>
-            <th scope="col"> Mascotas</th>
+
           </tr>
         </thead>
         <tbody>
@@ -37,17 +37,20 @@
     
           </tr>
           {% for date in form %}
+          {% if date.fk_mascota.fk_usuario.fk_veterinaria == user%}
           <tr>
             
-            <td>{{date.documento}}</td>
-            <td>{{date.nombre}}</td>
-            <td>{{date.apellido}}</td>
-            <td>{{date.fechanacimiento}}</td>
-            <td>{{date.celular}}</td>
-            <td><a href="">Registrar Mascota</a></td>
-          </tr>
-          {% endfor %}
+            <td>{{date.fk_mascota.nombre}}</td>
+            <td>{{date.fecharegistro}}</td>
+            <td>{{date.proximavacuna}}</td>
 
+            <td>{{date.fk_producto.nombre}}</td>
+            <td><a href="">Ver Mas</a></td>
+            
+          </tr>
+          {% endif %}
+
+          {% endfor %}
           </tr>
         </tbody>
     </table>

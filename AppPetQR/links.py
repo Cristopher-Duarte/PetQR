@@ -36,7 +36,7 @@ urlpatterns = [
 
     #Registro Vacunas
     path('RegistroVacunas/<int:pk>',login_required(RegistroVacunas.as_view()),name="RVacunas"),
-    path('RegistroDetalleVacuna/<int:pk>',login_required(RegistroDetalleVacuna.as_view()),name="RDatelleVacuna"),
+    path('RegistroDetalleVacuna/',login_required(RegistroDetalleVacuna.as_view()),name="RDatelleVacuna"),
     path('RegistroDetalleVacuna/Register/',login_required(RegisterVacuna)),
     #Fin registro
 
