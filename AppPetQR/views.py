@@ -69,10 +69,11 @@ class RegistroVeterinaria(View):
                 Users.user_permissions.add(permiso)
                 Users.save()
                 Formulario.save()
+                return redirect(reverse('login'))
         else:
             Formulario = VeterinariaForm()
 
-        return render(request, 'AppPetQR/Register/RegistroVeterinaria.html', {'form':Formulario})       
+            return render(request, 'AppPetQR/Register/RegistroVeterinaria.html', {'form':Formulario})       
 
 
 class RegistroUsuario(View):
