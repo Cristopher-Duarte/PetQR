@@ -63,9 +63,7 @@ urlpatterns = [
 
 
 
-
     path('login/', LoginView.as_view(template_name="Accounts/login.html"), name='login'),
-
     path('LogoutSesion/',login_required(LogoutView.as_view(template_name='accounts/logout.html')),name='logout'),
     path('User/Index/',login_required(Index_Usuario),name='IndexUsuarios'),
     path('Home/Users',login_required(home),name='Home'),
