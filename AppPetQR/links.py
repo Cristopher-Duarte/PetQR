@@ -23,7 +23,7 @@ urlpatterns = [
     #<--------FIN MOVIL--------->
 
     #------------------------Registros------------------------------------------------------------------#
-    path('RegisterVeterinaria/',RegistroVeterinaria.as_view(),name="Rveterinaria"),
+    path('',RegistroVeterinaria.as_view(),name="Rveterinaria"),
     path('RegisterUsuario/<int:pk>',login_required(RegistroUsuario.as_view()),name="RUsuario"),
     path('RegisterMascota/<int:pk>',login_required(RegistroMascotas.as_view()),name="RMascota"),
     path('RegistroMedico/<int:pk>',login_required(RegistroMedico.as_view()),name="RMedico"),
@@ -58,7 +58,7 @@ urlpatterns = [
     path('MostrarProducto/',login_required(MostrarProducto.as_view()),name="LMostrarProducto"),
 
 
-    path('', LoginView.as_view(template_name="accounts/login.html"), name='login'),
+    path('login/', LoginView.as_view(template_name="accounts/login.html"), name='login'),
     path('LogoutSesion/',login_required(LogoutView.as_view(template_name='accounts/logout.html')),name='logout'),
     path('User/Index/',login_required(Index_Usuario),name='IndexUsuarios'),
     path('Home/Users',login_required(home),name='Home'),
