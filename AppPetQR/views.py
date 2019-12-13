@@ -11,11 +11,11 @@ from django.http import *
 from django.contrib.auth.models import Permission, User
 from AppPetQR.VerificarUsuario import Verificador
 
-
+from django.http.response import HttpResponseRedirect
 
 """
 from django.views.generic.edit import FormView
-from django.http.response import HttpResponseRedirect
+
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
@@ -42,7 +42,7 @@ def Recordatorio(request):
 
 
 
-    
+
 
 
 
@@ -69,10 +69,11 @@ class RegistroVeterinaria(View):
                 Users.user_permissions.add(permiso)
                 Users.save()
                 Formulario.save()
+                return redirect(reverse('login'))
         else:
             Formulario = VeterinariaForm()
 
-        return render(request, 'AppPetQR/Register/RegistroVeterinaria.html', {'form':Formulario})       
+        return render(request, 'AppPetQR/Register/RegistroVeterinaria.html', {'form':Formulario})
 
 
 class RegistroUsuario(View):
@@ -81,13 +82,13 @@ class RegistroUsuario(View):
         return render(request, 'AppPetQR/Register/RegistroUsuario.html',{'form':FormularioU})
     def post(self,request, pk):
         if request.method == 'POST':
-            
+
             VeterinariaDate = Veterinaria.objects.get(id=pk) #objecto de la veterinaria
 
             FormularioU = UsuarioForm(request.POST)
 
             forms = FormularioU.save(commit=False)
-            
+
             username=request.POST.get("documento")
             password = str(username)+"QR"
             permiso = Permission.objects.get(name="Is Usuario")
@@ -101,7 +102,7 @@ class RegistroUsuario(View):
                 Users.user_permissions.add(permiso)
                 Users.save()
                 forms.save()
-                
+
                 return redirect(reverse('LMostrarUsuario'))
             else:
                 return render(request, 'AppPetQR/Register/RegistroUsuario.html',{'form':FormularioU})
@@ -119,13 +120,13 @@ class RegistroMedico(View):
 
     def post(self,request, pk):
         if request.method == 'POST':
-            
+
             VeterinariaDate = Veterinaria.objects.get(id=pk) #objecto de la veterinaria
 
             FormularioU = MedioForm(request.POST)
 
             forms = FormularioU.save(commit=False)
-                        
+
             username=request.POST.get("documento")
             password = str(username)+"QR"
             permiso = Permission.objects.get(name="Is Usuario")
@@ -193,11 +194,11 @@ class RegistroDesparacitacion(View):
         id = TipoProducto.objects.filter(nombre="Medicamentos")
         FormularioD = InfoDesparacitacionForm(id)
 
-        return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})      
+        return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})
 
     def post(self, request, pk):
 
-       
+
         id = TipoProducto.objects.filter(nombre="Medicamentos")
         MascotasDate = Mascotas.objects.get(id=pk) #objecto de la veterinaria
 
@@ -210,7 +211,7 @@ class RegistroDesparacitacion(View):
         if FormularioD.is_valid():
             forms.save()
             return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})
-   
+
 class RegistroVacunas(View):
 
     def get(self, request, pk):
@@ -226,18 +227,32 @@ class RegistroVacunas(View):
         FormularioV = InfoVacunasForm(id, request.POST)
         forms = FormularioV.save(commit=False)
         forms.fk_mascota = MascotasDate
+        pk = len(InfoVacunas.objects.all())
+        forms.numeroregistro = pk
+
+
         if FormularioV.is_valid():
             forms.save()
 
-            pk = len(InfoVacunas.objects.all())
-      
-            return redirect(reverse('RDatelleVacuna',kwargs={'pk': pk}))
+        return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'form':FormularioD})
+
+
+
+
+
+
+
+
+
+
+
+
 
 class RegistroDetalleVacuna(View):
     def get(self, request, pk):
         VacunaDate= InfoVacunas.objects.get(id=pk)
         EfectosDate = Efectos.objects.all()
-        
+
         return render(request, 'AppPetQR/Register/RegistroDetalleVacuna.html', {'Date':VacunaDate, 'DatosEfectos':EfectosDate})
 
 
@@ -247,7 +262,7 @@ class RegistroControlMedico(View):
 
         return render(request, 'AppPetQR/Register/RegistroControlMedico.html',{'form':FormularioCM})
 
-    def post(self, request, mascota):    
+    def post(self, request, mascota):
         MascotasDate = Mascotas.objects.get(id=mascota)
         user= request.user.username
 
@@ -262,13 +277,13 @@ class RegistroControlMedico(View):
 
             pk= len(ControlesMedicos.objects.all())
             return redirect(reverse('RDetalleControlMedico',kwargs={'pk': pk}))
-        
+
 class RegistroDetalleControlMedico(View):
     def get(self, request, pk):
         ControlMedicoDate= ControlesMedicos.objects.get(id=pk)
         TipoMedicamento = TipoProducto.objects.get(nombre="Medicamentos")
         MedicamentoDate = Producto.objects.filter(fk_Tipoproducto=TipoMedicamento)
-        
+
         return render(request, 'AppPetQR/Register/RegistroControlMedico.html', {"MedicamentoDate":MedicamentoDate, "ControlMedicoDate":ControlMedicoDate})
 
 
@@ -280,7 +295,7 @@ def RegisterControlMedico(request):
         #print(c)
         data = Data_json[1:]
         #print(data)
-        
+
         for x in data:
             pass
 
@@ -294,7 +309,7 @@ def RegisterVacuna(request):
         #print(c)
         data = Data_json[1:]
         #print(data)
-        
+
         for x in data:
             efecto= Efectos.objects.get(id=x)
             #print(efecto)
@@ -304,8 +319,8 @@ def RegisterVacuna(request):
             forms=DetalleInfoVacunas(fk_efecto=efecto, fk_infovacuna=VacunaDate)
             forms.save()
 
-       
-            
+
+
 
 
     return HttpResponse("bien")
@@ -314,13 +329,13 @@ def RegisterVacuna(request):
 
 class ListarVacunasMovil(View):
     def get(self, request):
-        
-        VacunaDate = DetalleInfoVacunas.objects.all()
-        
-             
 
-        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate}) 
-       
+        VacunaDate = DetalleInfoVacunas.objects.all()
+
+
+
+        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
+
 class ListarDesparacitacionMovil(View):
     def get(self, request):
         DesparacitacionDate = InfoDesparacitacion.objects.all()
@@ -363,7 +378,7 @@ class MostrarDesparasitacion(View):
 
 class MostrarMascotas(View):
     def get(self, request):
-        user= request.user.username   
+        user= request.user.username
         pk = Veterinaria.objects.get(nombre=user)
         MascotaDate = Mascotas.objects.all()
         return render(request, 'AppPetQR/List/MostrarMascotas.html', {'form':MascotaDate, 'user':pk})
@@ -371,7 +386,7 @@ class MostrarMascotas(View):
 
 class MostrarProducto(View):
     def get(self, request):
-        user= request.user.username   
+        user= request.user.username
         pk = Veterinaria.objects.get(nombre=user)
         ProductoDate = Producto.objects.all()
         return render(request, 'AppPetQR/List/MostrarProducto.html', {'form':ProductoDate, 'user':pk})
@@ -386,7 +401,7 @@ def home (request):
         return redirect(reverse('IndexAdmin'))
     elif user.has_perm('AppPetQR.is_doctor'):
         return redirect('IndexDoctor')
-    
+
 
 @permission_required('AppPetQR.is_usuario')
 def Index_Usuario (request):

@@ -1,4 +1,4 @@
-{% extends 'IndexAdmin.html '%}
+{% extends 'indexAdmin.html'%}
 
 
 
@@ -25,23 +25,23 @@
             <th scope="col">Nombre</th>
             <th scope="col">Tipo</th>
 
-            
-            
+
+
           </tr>
         </thead>
         <tbody>
           <tr>
-    
+
           </tr>
           {% for date in form %}
 
           {% if date.fk_veterinaria == user %}
           <tr>
-            
+
             <td>{{date.nombre}}</td>
             <td>{{date.fk_Tipoproducto.nombre }}</td>
 
-          
+
           </tr>
           {% endif %}
           {% endfor %}

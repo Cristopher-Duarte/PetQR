@@ -1,4 +1,4 @@
-{% extends 'IndexAdmin.html '%}
+{% extends 'indexAdmin.html'%}
 
 
 
@@ -27,24 +27,24 @@
             <th scope="col">Fecha Registro</th>
             <th scope="col">Vacunas</th>
             <th scope="col">Desparasitantes</th>
-            
+
             <th scope="col"> Controles Medicos</th>
-            
+
           </tr>
         </thead>
         <tbody>
           <tr>
-    
+
           </tr>
           {% for date in form %}
 
           {% if date.fk_usuario.fk_veterinaria == user %}
           <tr>
-            
+
             <td>{{date.nombre}}</td>
             <td>{{date.fk_usuario.nombre}}</td>
             <td>{{date.fecharegistro}}</td>
-          
+
             <td><a href="{%url 'RVacunas' date.id %}">Registrar Vacunas</a></td>
             <td><a href="{%url 'RDesparacitacion' date.id %}">Registrar Desparacitantes</a></td>
 
