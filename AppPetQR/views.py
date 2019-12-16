@@ -389,15 +389,11 @@ class MostrarVacunasMedico(View):
         
         return render(request, 'AppPetQR/List/MostrarVacunasM.html', {'VacunasDate':VacunasDate})
 
-
-
-
 class MostrarDesparasitacionMedico(View):
-    def get(self, request):
-        user= request.user.username
-        pk = Veterinaria.objects.get(nombre=user)
-        InfoDesparacitacionDate=InfoDesparacitacion.objects.all()
-        return render(request, 'AppPetQR/List/MostrarDesparasitacion.html', {'form':InfoDesparacitacionDate, 'user':pk})
+    def get(self, request , pk):
+        Desparasitacion= InfoDesparacitacion.objects.filter(fk_mascota=pk)
+ 
+        return render(request, 'AppPetQR/List/MostrarDesparasitacionM.html', {'Desparasitacion':Desparasitacion})
 
 
 @login_required

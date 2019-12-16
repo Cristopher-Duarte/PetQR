@@ -1,45 +1,34 @@
 {% extends 'indexDoctor.html '%}
 
-
-
-
-
-
-
-
 {% block input %}
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Responsable</th>
-            <th scope="col">Mascota</th>
+            <th scope="col">Vacuna</th>
             <th scope="col">Fecha Registro</th>
-            <th scope="col">Fecha Nacimiento</th>
-            
-            <th scope="col"> Medicamento</th>
-            
+            <th scope="col">Proximo Desparasitante</th>
+            <th scope="col">Ver Detalle</th>
           </tr>
         </thead>
         <tbody>
           <tr>
     
           </tr>
-          {% for date in form %}
+          {% for date in Desparasitacion %}
           <tr>
             
-            <td>{{date.documento}}</td>
-            <td>{{date.nombre}}</td>
-            <td>{{date.apellido}}</td>
-            <td>{{date.fechanacimiento}}</td>
-            <td>{{date.celular}}</td>
+            <td>{{date.fk_producto.nombre}}</td>
+            <td>{{date.fecharegistro}}</td>
+            <td>{{date.proximadesparacitante}}</td>
+            <td><a href="">Mas Informacion</a></td>
             
+
           </tr>
           {% endfor %}
 
           </tr>
         </tbody>
     </table>
-    <p><a href="{% url 'RDesparacitacion'  user.id %}">Agregar un nuevo desparasitante</a></p>
 
 
 {% endblock %}

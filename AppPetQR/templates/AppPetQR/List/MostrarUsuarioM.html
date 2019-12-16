@@ -34,7 +34,9 @@
             <td>{{date.fechanacimiento}}</td>
             <td>{{date.celular}}</td>
             <td><a href="{% url 'LMostrarMascotasMedico' date.id %}">Ver Mascotas</a></td>
+            
             </tr>
+            
         {% endif %}
       {% endfor %}
 

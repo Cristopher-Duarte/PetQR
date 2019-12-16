@@ -63,6 +63,7 @@ urlpatterns = [
     path('MostrarUsuarioMedico/',MostrarUsuarioMedico.as_view(),name="LMostrarUsuarioMedico"),
     path('MostrarMascotasMedico/<int:pk>',MostrarMascotasMedico.as_view(),name="LMostrarMascotasMedico"),
     path('MostrarVacunasMedico/<int:pk>',MostrarVacunasMedico.as_view(),name="LMostrarVacunasMedico"),
+    path('MostrarDesparasitacionMedico/<int:pk>',MostrarDesparasitacionMedico.as_view(),name="LMostrarDesparasitacionMedico"),
     
 
 
