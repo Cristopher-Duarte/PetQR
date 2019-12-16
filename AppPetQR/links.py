@@ -58,14 +58,11 @@ urlpatterns = [
     path('MostrarProducto/',login_required(MostrarProducto.as_view()),name="LMostrarProducto"),
 
 
-    path('', LoginView.as_view(template_name="Accounts/login.html"), name='login'),
+    path('', LoginView.as_view(template_name="accounts/login.html"), name='login'),
     path('LogoutSesion/',login_required(LogoutView.as_view(template_name='accounts/logout.html')),name='logout'),
     path('User/Index/',login_required(Index_Usuario),name='IndexUsuarios'),
     path('Home/Users',login_required(home),name='Home'),
     path('Admin/Index/',login_required(Index_Admin),name='IndexAdmin'),
     path('Doc/Index/',login_required(Index_Doctor),name='IndexDoctor'),
-
-
-
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

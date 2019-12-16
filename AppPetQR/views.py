@@ -318,7 +318,6 @@ class ListarVacunasMovil(View):
         VacunaDate = DetalleInfoVacunas.objects.all()
         
              
-
         return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate}) 
        
 class ListarDesparacitacionMovil(View):
