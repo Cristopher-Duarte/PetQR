@@ -1,34 +1,27 @@
 {% extends 'Movil.html '%}
 
+
 {% block contenido %}
 
 
-    <table>
-        <tbody>
-            <tr>
-                <td>Nombre</td>
-                <td>Nicol</td>
-            </tr>
-            <tr>
-                <td>Reza</td>
-                <td>Mestiza</td>
-            </tr>
-            <tr>
-                <td>Edad</td>
-                <td>2 años</td>
-            </tr>
-            <tr>
-                <td>Responsable</td>
-                <td>Luis alejandro</td>
-            </tr>
+<table>
+    <tr>
+        <td>Nombre:</td>
+        <th >  {{dueño.nombre}} {{dueño.apellido}}</th>
+        
+    </tr>
+    <tr>
+        <td>Documento:  </td>
+        <th>  {{dueño.documento}}</th>
+    </tr>
+    <tr>
+        <td>Telefono:</td>
+        <th>  {{dueño.celular}}</th>
+    </tr>
 
+</table>
 
-        </tbody>
-
-        <img src="static/images/pet.jpg" class="foto"  />
-    </table>
-
-    <table>
+    <table  class="table" >
         <tr>
             <th>Nombre</th>
             <th>Fecha registro</th>

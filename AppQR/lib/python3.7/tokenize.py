@@ -1,1 +1,1 @@
-/usr/lib/python3.7/tokenize.py
+C:/usr/lib/python3.7/tokenize.py

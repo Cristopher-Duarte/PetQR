@@ -19,11 +19,15 @@ urlpatterns = [
 
     #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
     path('Inicio/<int:pk>',MostrarMascotas.as_view(),name="inicio"),
-    #path('Vacunas/',Vacunas,name="vacuna"),
     path('Control/',Control,name="control"),
     path('Desparacitacion/',Desparacitacion,name="desparacitacion"),
     path('Almacen/',Almacen,name="almacen"),
     path('Recordatorio/',Recordatorio,name="recordatorio"),
+    path('MostrarMascota/Movil/',login_required(ListarMacotasMovil.as_view()),name="LMascotasMov"),
+    path('MostrarDesparasitante/Movil/<int:pk>',login_required(ListarVacunasMovil.as_view()),name="LDMascotasMov"),
+    path('DesparacitacionIndex/Movil/',login_required(MostrarDesparasitanteMovil.as_view()),name="IndiceDes"),
+    path('VacunasIndex/Movil/',login_required(MostrarVacunaMovil.as_view()),name="IndiceVac"),
+    
     #<--------FIN MOVIL--------->
 
     #------------------------Registros------------------------------------------------------------------#
@@ -72,7 +76,7 @@ urlpatterns = [
 
 
     #------------------------Listas------------------------------------------------------------------#
-    path('ListarVacunas/',ListarVacunasMovil.as_view(),name="LVacunas"),
+    path('ListarVacunas/<int:pk>',ListarVacunasMovil.as_view(),name="LVacunas"),
     path('ListarDesparacitacion/',login_required(ListarDesparacitacionMovil.as_view()),name="LDesparacitacion"),
 
 

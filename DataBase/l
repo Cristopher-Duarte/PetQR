@@ -23,3 +23,10 @@ insert into AppPetQR_especie values(2, "Felino");
 insert into AppPetQR_tipoproducto values(1, "Comida");
 insert into AppPetQR_tipoproducto values(2, "Medicamentos");
 insert into AppPetQR_tipoproducto values(3, "Aseo");
+insert into AppPetQR_tipoproducto values(4, "Vacunas");
+insert into AppPetQR_tipoproducto values(5, "Desparasitante");
+
+insert into apppetqr_efectos values (1,"Rabia");
+insert into apppetqr_efectos values (2,"Moquillo");
+insert into apppetqr_efectos values (3,"Hepatitis");
+insert into apppetqr_efectos values (4,"Gonorrea");

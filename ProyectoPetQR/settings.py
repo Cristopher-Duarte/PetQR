@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':    'petqr',
         'USER':     'root',
-        'PASSWORD': '1001346644',
+        'PASSWORD': '1005012521',
         'HOST':     'localhost',
 
 
@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-LOGIN_REDIRECT_URL = '/Home/Users'
+LOGIN_REDIRECT_URL = 'Home'
 LOGIN_URL = 'login'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'media', 'Images')

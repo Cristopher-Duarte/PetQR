@@ -42,21 +42,24 @@ window.onload= function detalle(){
             <a href="#" class="bt-menu"><span class="TAP">-></span>Menu</a> 
         </div>
         <nav onload="esconder()">
-            <ul>
-                {% block Menu %}
-
-                {% endblock %}
-
+            <ul> 
+                <li><a href="{% url 'LMascotasMov' %}"><span></span>Inicio</a></li>
+                <li><a href="{% url 'IndiceVac' %}"><span></span>Vacuna</a></li>
+                <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
+                <li><a href="{% url 'IndiceDes' %}"><span></span>Desparacitacion</a></li>
+                <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
+                <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
             </ul>
         </nav>
     </header>
     
-        <div class="container">
+        <div class="containers">
             {% block contenido %}
 
             {% endblock %}
         </div>
-    
+        
+
 
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="{% static 'js/main.js' %}"></script>

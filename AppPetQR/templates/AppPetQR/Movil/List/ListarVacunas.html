@@ -1,77 +1,52 @@
-{% extends 'IndexUsuario.html '%}
+{% extends 'Movil.html'%}
 
-{% block Menu %}
-
-
-
-{% endblock %}
 
 
 
 {% block contenido %}
 
+<table>
+    <tr>
+        <td>Nombre:</td>
+        <th >  {{dueño.nombre}} {{dueño.apellido}}</th>
+        
+    </tr>
+    <tr>
+        <td>Documento:  </td>
+        <th>  {{dueño.documento}}</th>
+    </tr>
+    <tr>
+        <td>Telefono:</td>
+        <th>  {{dueño.celular}}</th>
+    </tr>
 
-    <table class="mascota">
-        <tbody>
-            
-            <tr>
-                <td >
-                    <img src="", height="100" , class="foto">
-                </td>
-            </tr> 
-            <tr>
-                <td>Nombre:</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Reza:</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Edad:</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Responsable:</td>
-                <td></td>
-                <td></td>
-            </tr>
+</table>
 
+<table class="table" >
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha registro</th>
+        <th>Fecha de Refuerzo</th>
+        <th>Detalle</th>
 
-        </tbody>
-    </table>
+    </tr>
 
-    <p style="padding-bottom: 3em;"></p>
-
-    <table class="table" >
+    {% for datos in VacunasDate %}
         <tr>
-            <th>Nombre</th>
-            <th>Fecha registro</th>
-            <th>Fecha de Refuerzo</th>
-            <th>Detalle</th>
-
+            <th>{{datos.fk_producto.nombre}}</th>
+            <th>{{datos.fecharegistro}}</th>
+            <th>{{datos.proximavacuna}}</th>
+            <th><a href="#">Ver Mas</a></th>
+            
         </tr>
+    {% endfor %}
 
-        {% for datos in VacunaDate %}
-            <tr>
-                <th>{{datos.fk_producto.nombre}}</th>
-                <th>{{datos.fecharegistro}}</th>
-                <th>{{datos.proximavacuna}}</th>
-                
-                <th><input type="submit" value="Ver Mas" class="btn btn-primary" data-toggle="button" aria-pressed="false" onclick="Monstrar_Ocultar()"></th>
-            </tr>
-        {% endfor %}
-            <tbody>
-                <tr id="cont" style="height:80%; background: black; display:none; width: 70%;">
-                    <td scope="row"><img src="", height="50", class="sticker", style="margin-left: 65%;"></td>
-                </tr>
-           </tbody>
+</table>
 
 
 
-    </table>
-    
-  
-    
+
+
+
 
 {% endblock %}

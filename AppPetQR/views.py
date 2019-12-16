@@ -299,20 +299,57 @@ def  RegistrarDesparasitacion(request):
 #---------------Listar Movil---------------#
 
 class ListarVacunasMovil(View):
-    def get(self, request):
-        user= request.user.username
-        VacunaDate = InfoVacunas.objects.all()
-        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
+    def get(self, request, pk):
+        User = request.user.username
+        dueño = Usuario.objects.get(documento=User)
+        VacunasDate= InfoVacunas.objects.filter(fk_mascota=pk)
+        
+        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunasDate':VacunasDate, 'dueño':dueño})
 
-class ListarDesparacitacionMovil(View):
+class MostrarDesparasitanteMovil(View):
     def get(self, request):
-        DesparacitacionDate = InfoDesparacitacion.objects.all()
-        return render(request,'AppPetQR/Movil/List/ListarDesparacitacion.html', {'DesparacitacionDate':DesparacitacionDate})
+        User = request.user.username
+        pk = Usuario.objects.get(documento=User)
+        dueño = Usuario.objects.get(documento=User)
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        return render(request,'AppPetQR/Movil/List/Desparasitante.html', {'MascotaDate':MascotaDate,'dueño':dueño})
+
 
 class ListarControlMedicoMedicoMovil(View):
     def get(self, request):
         pass
 
+class MostrarVacunaMovil(View):
+    def get(self, request):
+        User = request.user.username
+        pk = Usuario.objects.get(documento=User)
+        dueño = Usuario.objects.get(documento=User)
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        return render(request,'AppPetQR/Movil/List/Vacuna.html', {'MascotaDate':MascotaDate,'dueño':dueño})
+
+
+
+
+
+
+
+
+#-----------Menu--------------------#
+class ListarDesparacitacionMovil(View):
+    def get(self, request):
+        User = request.user.username
+        pk = Usuario.objects.get(documento=User)
+        dueño = Usuario.objects.get(documento=User)
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        return render(request,'AppPetQR/Movil/List/Desparasitante.html', {'MascotaDate':MascotaDate,'dueño':dueño})
+
+class ListarMacotasMovil(View):
+    def get(self, request):
+        User = request.user.username
+        pk = Usuario.objects.get(documento=User)
+        dueño = Usuario.objects.get(documento=User)
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        return render(request,'AppPetQR/Movil/List/ListarMascota.html', {'MascotaDate':MascotaDate,'dueño':dueño})
 
 #-----------Listar Administrador--------------------#
 

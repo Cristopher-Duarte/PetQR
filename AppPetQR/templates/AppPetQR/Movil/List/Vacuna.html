@@ -3,16 +3,15 @@
 
 {% block contenido %}
 
-
 <table class="table" >
    
     <tr>
       <th >Nombre Mascota</th>
       <th >Fecha Nacimiento</th>
       <th >Fecha Registro</th>  
-      <th> Vacuna</th>
-      <th >Desparacitasiones</th>
-      <th> Control Medico</th>
+      <th>Vacuna</th>
+      
+      
       
       
     </tr>
@@ -29,9 +28,9 @@
         
         <th>{{date.fechanacimiento}}</th>
         <th>{{date.fecharegistro}}</th>
-        <th><a href="{% url 'LVacunas' date.id %}">Ver Vacuna</a></th>
-        <th><a href="{% url 'LDMascotasMov' date.id %}">Ver Desparacitasiones</a></th>
-        <th><a href="#">Ver Control Medico</a></th>
+        
+        <th><a href="{% url 'LVacunas' date.id %}">Ver Vacunas</a></th>
+        
        
         
 
@@ -43,15 +42,4 @@
 </table>
 
 
-
-
-
-
-
-
-
 {% endblock %}
-
-
-
-
