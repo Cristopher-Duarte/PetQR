@@ -1,4 +1,4 @@
-{% extends 'Administrador.html'%}
+{% extends 'indexAdmin.html'%}
 
 
 
@@ -44,7 +44,7 @@
               <td>{{date.apellido}}</td>
               <td>{{date.fechanacimiento}}</td>
               <td>{{date.celular}}</td>
-              <td><a href="{% url 'RMascota'  date.id %}">Registrar Mascota</a></td>
+              <td><a href="{% url 'PaginaRegistroMascota'  date.id %}">Registrar Mascota</a></td>
             </tr>
             {% endif %}
           {% endfor %}

@@ -44,9 +44,8 @@
             <td>{{date.nombre}}</td>
             <td>{{date.fk_usuario.nombre}}</td>
             <td>{{date.fecharegistro}}</td>
-
-            <td><a href="{%url 'RVacunas' date.id %}">Registrar Vacunas</a></td>
-            <td><a href="{%url 'RDesparacitacion' date.id %}">Registrar Desparacitantes</a></td>
+            <td><a href="{% url 'PaginaRegistroVacunas' date.pk %}">Agregar Vacuna</a></td>
+       
 
           </tr>
           {% endif %}

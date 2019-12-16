@@ -21,7 +21,7 @@ class Veterinaria(models.Model):
 
 
 class Especie(models.Model):
-    Raza=[(1, "Canino"),(2, "Felino")]
+    
     especie = models.CharField(max_length=40)
 
     def __str__(self):
@@ -29,33 +29,45 @@ class Especie(models.Model):
 
 class Raza(models.Model):
     
-
+    
     nombre = models.CharField(max_length=40)
+    fk_especie =models.ForeignKey('Especie', on_delete=models.CASCADE, db_column="fk_especie")
 
     def __str__(self):
         return self.nombre
 
 
 class TipoProducto(models.Model):
-    TipoProducto=[(1, "Comida"),(2, "Medicamentos"),(3, "Aseo")]
+    
 
-    nombre = models.CharField(max_length=40, choices=TipoProducto, default=1)
+    nombre = models.CharField(max_length=40)
     
 
     def __str__(self):
         return self.nombre
 
 
+
+class Producto(models.Model):
+    nombre = models.CharField(max_length=40)
+    fk_Tipoproducto = models.ForeignKey('TipoProducto', on_delete=models.CASCADE, db_column="fk_Tipoproducto")
+    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE, db_column="fk_veterinaria")
+
+
+    def __str__(self):
+        return self.nombre
+
+
 class Genero(models.Model):
-    Genero_tupla=[(1, "Hombre"),(2, "Mujer")]
-    nombre = models.CharField(max_length=40, choices=Genero_tupla, default=1)
+    
+    nombre = models.CharField(max_length=40,  default=1)
 
     def __str__(self):
         return self.nombre
 
 class GeneroMascota(models.Model):
-    GeneroMascota=[(1, "Macho"),(2, "Hembra")]
-    nombre = models.CharField(max_length=40, choices=GeneroMascota, default=1)
+    
+    nombre = models.CharField(max_length=40, default=1)
 
     def __str__(self):
         return self.nombre
@@ -124,14 +136,7 @@ class Mascotas(models.Model):
         return self.nombre
 
 
-class Producto(models.Model):
-    nombre = models.CharField(max_length=40)
-    fk_Tipoproducto = models.ForeignKey('TipoProducto', on_delete=models.CASCADE, db_column="fk_Tipoproducto")
-    fk_veterinaria = models.ForeignKey('Veterinaria', on_delete=models.CASCADE, db_column="fk_veterinaria")
 
-
-    def __str__(self):
-        return self.nombre
 
 
 
@@ -140,7 +145,7 @@ class ControlesMedicos(models.Model):
     fecharegistro = models.DateField(auto_now_add = True)
     observacion = models.CharField(max_length= 250)
     proximadesControl = models.DateField()
-    numeroRegistro = models.IntegerField()
+    
 
     fk_mascota = models.ForeignKey('Mascotas', on_delete=models.CASCADE, db_column="fk_mascota")
     fk_medicoveterinario = models.ForeignKey('MedicoVeterinaria', on_delete=models.CASCADE, db_column="fk_medicoveterinario")
@@ -148,8 +153,8 @@ class ControlesMedicos(models.Model):
 
     
 class DetalleRecetaMedica(models.Model):
-    indicaciones = models.CharField(max_length=60)
-    observaciones = models.CharField(max_length=200)
+    
+    indicaciones = models.CharField(max_length=200)
     fk_ControlMedico = models.ForeignKey('ControlesMedicos', on_delete=models.CASCADE, db_column="fk_ControlMedico")
     fk_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column="fk_producto")
 
@@ -158,7 +163,7 @@ class InfoVacunas(models.Model):
 
     fecharegistro = models.DateField(auto_now_add = True)
     proximavacuna =  models.DateField()
-    numeroregistro =models.IntegerField()
+    
     
     sticker = models.ImageField(upload_to='Images/%Y/%m/%d', null=True, blank=True)
 

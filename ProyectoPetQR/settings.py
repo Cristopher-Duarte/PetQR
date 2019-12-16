@@ -25,7 +25,8 @@ SECRET_KEY = 'sim(90dat5qrenz%8p&-xqjlfpz$(06(o%(rwji%ef*h)v6tr%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['1005012521.pythonanywhere.com']
+#ALLOWED_HOSTS = ['1005012521.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -80,14 +81,11 @@ WSGI_APPLICATION = 'ProyectoPetQR.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '1005012521$PetQR2',
-        'USER': '1005012521',
-        'PASSWORD':'290817082319.',
-        'HOST':'1005012521.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-                'sql_mode': 'traditional',
+        'NAME':    'petqr',
+        'USER':     'root',
+        'PASSWORD': '1001346644',
+        'HOST':     'localhost',
 
-            }
 
     }
 
