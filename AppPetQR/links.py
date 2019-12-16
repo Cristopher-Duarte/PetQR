@@ -53,11 +53,17 @@ urlpatterns = [
     #Fin Registro Control Medico
 
     #Registro Desparasitantes
+    path('PaginaRegistroDesparasitacion/<int:pk>',PaginaRegistroDesparasitacion.as_view(),name="PaginaRegistroDesparasitacion"),
+    path('PaginaRegistroDesparasitacion/RegistrarDesparasiantes/',RegistrarDesparasitacion),
 
     #Fin Registro Desparasitantes
 
 
     #--------------------------------------- Listar Medico ---------------------------------------------------#
+    path('MostrarUsuarioMedico/',MostrarUsuarioMedico.as_view(),name="LMostrarUsuarioMedico"),
+    path('MostrarMascotasMedico/<int:pk>',MostrarMascotasMedico.as_view(),name="LMostrarMascotasMedico"),
+    path('MostrarVacunasMedico/<int:pk>',MostrarVacunasMedico.as_view(),name="LMostrarVacunasMedico"),
+    
 
 
 

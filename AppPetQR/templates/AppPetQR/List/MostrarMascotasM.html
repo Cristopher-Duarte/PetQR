@@ -3,16 +3,6 @@
 
 
 
-{% block BtnMenu %}
-<p><a href="{% url 'LMostrarUsuario'   %}" class="btn ColorBoton list-group-item-action">Usuarios</a></p>
-<p><a href="{% url 'LMostrarVacunas'   %}" class="btn ColorBoton list-group-item-action">Mascotas</a></p>
-<p><a href="{% url 'LMostrarMascotas'   %}" class="btn ColorBoton list-group-item-action">Vacunas</a></p>
-<p><a href="{% url 'LMostrarDesparasitacion'   %}" class="btn ColorBoton list-group-item-action">Desparacitasiones</a></p>
-<p><a href="{% url 'LMostrarControlesMedicos'   %}" class="btn ColorBoton list-group-item-action">Controles Medicos</a></p>
-<p><a href="{% url 'LMostrarProducto'   %}" class="btn ColorBoton list-group-item-action">Productos</a></p>
-
-
-{% endblock %}
 
 
 
@@ -22,13 +12,15 @@
     <table class="table table-striped" >
         <thead>
           <tr>
-            <th scope="col">Nombre</th>
             <th scope="col">Responsable</th>
-            <th scope="col">Fecha Registro</th>
-            <th scope="col">Vacunas</th>
-            <th scope="col">Desparasitantes</th>
+            <th scope="col">||</th>
+            <th scope="col">Nombre Mascota</th>
             
-            <th scope="col"> Controles Medicos</th>
+            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Fecha Registro</th>  
+            <th scope="col">Vacunas</th>
+            <th scope="col">Desparacitasiones</th>
+            <th scope="col">Controles Medicos</th>
             
           </tr>
         </thead>
@@ -36,20 +28,25 @@
           <tr>
     
           </tr>
-          {% for date in form %}
+          {% for date in MascotaDate %}
 
-          {% if date.fk_usuario.fk_veterinaria == user %}
-          <tr>
-            
-            <td>{{date.nombre}}</td>
-            <td>{{date.fk_usuario.nombre}}</td>
-            <td>{{date.fecharegistro}}</td>
           
-            <td><a href="{%url 'RVacunas' date.id %}">Registrar Vacunas</a></td>
-            <td><a href="{%url 'RDesparacitacion' date.id %}">Registrar Desparacitantes</a></td>
+            <tr>
+              
+              <td>{{date.fk_usuario.nombre}}</td>
+              <td>||</td>
+              <td>{{date.nombre}}</td>
+              
+              <td>{{date.fechanacimiento}}</td>
+              <td>{{date.fecharegistro}}</td>
+            
+              <td><a href="{% url 'LMostrarVacunasMedico' date.id %}">Ver Vacunas</a></td>
+              <td><a href="">Ver Desparacitasiones</a></td>
+              <td><a href="">Ver Controles Medicos</a></td>
+              
 
-          </tr>
-          {% endif %}
+            </tr>
+
           {% endfor %}
 
           </tr>

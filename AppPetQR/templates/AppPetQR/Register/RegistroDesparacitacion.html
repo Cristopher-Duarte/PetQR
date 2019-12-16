@@ -7,12 +7,69 @@
 
 
 {% block input %}
-
-    <form method="POST" action="">
+    <form action="" method="post">
         {% csrf_token %}
+        <label for="Vacuna_id" style="margin-top:3em ;">Desparasiantes</label>
+        <p>
+            
+            <select id="Desparasiantes_id" class='form-control'>
+                <option selected>Seleccione una Desparasiantes</option>
+                {% for date in Productos %}
+                    {% if date.fk_veterinaria.nombre == user.username %}
+                        <option value="{{ date.id }}"> {{ date.nombre }}</option>
+                    {% endif %}
+                {% endfor %}
 
-        {{ form.as_p }}
-        <button type="submit" class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" >Enviar</button>
+
+            </select>
+        </p>
+
+        <label for="Desparasiantes">Proxima Desparasiantes</label>
+        <p><input type="date" name="Desparasiantes" id="ProximaDesparasiantes_id" class='form-control'></p>
+            
     </form>
+ 
 
+    <button id="RegistrarDesparasiantes"  class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;"> Registrar Desparasiantes</button>
+
+{% endblock %}
+
+
+{% block script %}
+    <script text="text/javascript">
+        var csrftoken= $("[name=csrfmiddlewaretoken]").val();
+
+
+        Data =[]
+
+        
+        document.getElementById("RegistrarDesparasiantes").addEventListener("click", function(){
+
+
+            Producto= document.getElementById("Desparasiantes_id").value
+            proximavacuna= document.getElementById("ProximaDesparasiantes_id").value
+            Mascota = "{{Mascota}}";
+
+            Data.push(Producto)
+            Data.push(proximavacuna)
+            Data.push(Mascota)
+
+            fetch("RegistrarDesparasiantes/", {
+                method: "post",
+                headers:{
+                    'acept':'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify(Data)
+            })
+            .then( (Response)=>{
+                console.log(Data)
+
+            });
+        });
+
+
+
+    </script>
 {% endblock %}

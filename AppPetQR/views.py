@@ -127,7 +127,7 @@ class RegistroMedico(View):
 
             username=request.POST.get("documento")
             password = str(username)+"QR"
-            permiso = Permission.objects.get(name="Is Usuario")
+            permiso = Permission.objects.get(name="Is Medico")
 
             decision = Verificador("MEDICO", str(username))
 
@@ -253,6 +253,26 @@ class PaginaRegistroControlesMedicos(View):
                                                                                 'Mascota':Mascota})
 
 
+class PaginaRegistroDesparasitacion(View):
+    def get(self, request, pk):
+        TipoProductos = TipoProducto.objects.get(nombre="Desparasitante")
+        Productos = Producto.objects.filter(fk_Tipoproducto= TipoProductos)
+        Mascota = pk
+
+        return render(request, 'AppPetQR/Register/RegistroDesparacitacion.html',{'Productos':Productos,
+                                                                                 'Mascota':Mascota})
+
+def  RegistrarDesparasitacion(request):
+    if request.method == "POST":
+        data = request.body.decode('utf-8')
+        Data_json = json.loads(data)
+        Productos =Producto.objects.get(id=Data_json[0])
+        Mascota = Mascotas.objects.get(id=Data_json[2])
+        FormularioDesparasitacion = InfoDesparacitacion(proximadesparacitante=Data_json[1], fk_producto=Productos, fk_mascota=Mascota)
+        FormularioDesparasitacion.save()
+        
+    return HttpResponse("Todo Bien Parce")
+    
 
 
 
@@ -280,7 +300,7 @@ class PaginaRegistroControlesMedicos(View):
 
 class ListarVacunasMovil(View):
     def get(self, request):
-
+        user= request.user.username
         VacunaDate = InfoVacunas.objects.all()
         return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
 
@@ -342,13 +362,42 @@ class MostrarProducto(View):
 class MostrarUsuarioMedico(View):
     def get(self, request):
         user= request.user.username
+
         pk_Medico = MedicoVeterinaria.objects.get(documento=user)
         pk_Veterinaria = pk_Medico.fk_veterinaria
-        Usuarios  = Usuario.objects.all()
-        return render(request, 'AppPetQR/List/MostrarUsuarioM.html',{'Usuarios':Usuarios,
+        usuarios  = Usuario.objects.all()
+        return render(request, 'AppPetQR/List/MostrarUsuarioM.html',{'usuarios':usuarios,
                                                                      'pk_Veterinaria':pk_Veterinaria})
 
+class MostrarMascotasMedico(View):
+    def get(self, request, pk):
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        
+        return render(request, 'AppPetQR/List/MostrarMascotasM.html', {'MascotaDate':MascotaDate})
 
+class MostrarMascotasMedico(View):
+    def get(self, request, pk):
+        MascotaDate = Mascotas.objects.filter(fk_usuario=pk)
+        
+        return render(request, 'AppPetQR/List/MostrarMascotasM.html', {'MascotaDate':MascotaDate})
+
+class MostrarVacunasMedico(View):
+    def get(self, request, pk):
+        VacunasDate= InfoVacunas.objects.filter(fk_mascota=pk)
+ 
+        
+        
+        return render(request, 'AppPetQR/List/MostrarVacunasM.html', {'VacunasDate':VacunasDate})
+
+
+
+
+class MostrarDesparasitacionMedico(View):
+    def get(self, request):
+        user= request.user.username
+        pk = Veterinaria.objects.get(nombre=user)
+        InfoDesparacitacionDate=InfoDesparacitacion.objects.all()
+        return render(request, 'AppPetQR/List/MostrarDesparasitacion.html', {'form':InfoDesparacitacionDate, 'user':pk})
 
 
 @login_required
@@ -358,7 +407,7 @@ def home (request):
         return redirect(reverse('IndexUsuarios'))
     elif user.has_perm('AppPetQR.is_admin'):
         return redirect(reverse('IndexAdmin'))
-    elif user.has_perm('AppPetQR.is_doctor'):
+    elif user.has_perm('AppPetQR.is_medico'):
         return redirect('IndexDoctor')
 
 

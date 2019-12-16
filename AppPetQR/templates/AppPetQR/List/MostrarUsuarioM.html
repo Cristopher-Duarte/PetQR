@@ -4,18 +4,48 @@
 
 
 
-{% block BtnMenu %}
-
-
-
-
-{% endblock %}
-
-
 
 
 
 {% block input %}
+<table class="table table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">Documento</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Fecha Nacimiento</th>
+
+        <th scope="col"> Contacto</th>
+        <th scope="col"> Mascotas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+      </tr>
+      {% for date in usuarios %}
+        {% if date.fk_veterinaria == pk_Veterinaria %}
+            <tr>
+
+            <td>{{date.documento}}</td>
+            <td>{{date.nombre}}</td>
+            <td>{{date.apellido}}</td>
+            <td>{{date.fechanacimiento}}</td>
+            <td>{{date.celular}}</td>
+            <td><a href="{% url 'LMostrarMascotasMedico' date.id %}">Ver Mascotas</a></td>
+            </tr>
+        {% endif %}
+      {% endfor %}
+
+
+      </tr>
+    </tbody>
+</table>
+
+
+<p><a href="">{{user.username}}</a></p>
+
 
 
 {% endblock %}
