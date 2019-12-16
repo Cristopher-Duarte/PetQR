@@ -281,10 +281,7 @@ class PaginaRegistroControlesMedicos(View):
 class ListarVacunasMovil(View):
     def get(self, request):
 
-        VacunaDate = DetalleInfoVacunas.objects.all()
-
-
-
+        VacunaDate = InfoVacunas.objects.all()
         return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunaDate':VacunaDate})
 
 class ListarDesparacitacionMovil(View):
@@ -348,7 +345,7 @@ class MostrarUsuarioMedico(View):
         pk_Medico = MedicoVeterinaria.objects.get(documento=user)
         pk_Veterinaria = pk_Medico.fk_veterinaria
         Usuarios  = Usuario.objects.all()
-        return render(request, 'AppPetQR/List/MostrarProducto.html',{'Usuarios':Usuarios,
+        return render(request, 'AppPetQR/List/MostrarUsuarioM.html',{'Usuarios':Usuarios,
                                                                      'pk_Veterinaria':pk_Veterinaria})
 
 

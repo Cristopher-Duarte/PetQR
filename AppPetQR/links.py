@@ -57,8 +57,15 @@ urlpatterns = [
     #Fin Registro Desparasitantes
 
 
+    #--------------------------------------- Listar Medico ---------------------------------------------------#
+
+
+
+
+
+
     #------------------------Listas------------------------------------------------------------------#
-    path('ListarVacunas/',login_required(ListarVacunasMovil.as_view()),name="LVacunas"),
+    path('ListarVacunas/',ListarVacunasMovil.as_view(),name="LVacunas"),
     path('ListarDesparacitacion/',login_required(ListarDesparacitacionMovil.as_view()),name="LDesparacitacion"),
 
 

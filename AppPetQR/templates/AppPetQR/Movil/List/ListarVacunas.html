@@ -2,11 +2,7 @@
 
 {% block Menu %}
 
-        <li><a href="{% url 'LVacunas'   %}"><span></span>Vacunas</a></li>
-        <li><a href="{% url 'control' %}"><span></span>Control Medico</a></li>
-        <li><a href="{% url 'desparacitacion' %}"><span></span>Desparacitacion</a></li>
-        <li><a href="{% url 'almacen' %}"><span></span>Almacen</a></li>
-        <li><a href="{% url 'recordatorio' %}"><span></span>Recordatorio</a></li>
+
 
 {% endblock %}
 
@@ -25,11 +21,11 @@
             </tr> 
             <tr>
                 <td>Nombre:</td>
-                <td>{{MascotaDate.nombre}}</td>
+                <td></td>
             </tr>
             <tr>
                 <td>Reza:</td>
-                <td>{{MascotaDate.fk_raza.nombre}}</td>
+                <td></td>
             </tr>
             <tr>
                 <td>Edad:</td>
@@ -37,8 +33,8 @@
             </tr>
             <tr>
                 <td>Responsable:</td>
-                <td>{{MascotaDate.fk_usuario.nombre}}</td>
-                <td>{{MascotaDate.fk_usuario.apellido}}</td>
+                <td></td>
+                <td></td>
             </tr>
 
 
