@@ -1,20 +1,93 @@
 {% extends 'indexAdmin.html '%}
 
-
-
-
-
-
-
-
-
 {% block input %}
 
-    <form method="POST" action="">
-        {% csrf_token %}
 
-        {{ form.as_p }}
-        <button type="submit" class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" >Enviar</button>
-    </form>
 
+    <label for="Observacion">Anamnesis</label>
+    <textarea name="Observacion" id="Observacion" cols="30" rows="10" class='form-control'></textarea>
+
+
+    <h2 style="text-align: center;">Receta Medica</h2>
+    <label for="Medicamento">Seleccione Medicamento</label>
+
+    <select id="Medicamento_id1" name="Medicamento" class='form-control'>
+        <option selected>Seleccione una Vacuna</option>
+        {% for date in Productos %}
+            {% if date.fk_veterinaria.nombre == user.username %}
+                <option value="{{ date.id }}"> {{ date.nombre }}</option>
+            {% endif %}
+        {% endfor %}
+
+
+    </select>
+
+    <label for="Indicacion">Indicaciones </label>
+    <input type="text" name="Indicacion" id="Indicacion_id1" class='form-control'>
+
+  
+    
+
+    <div id="Agregar">
+
+    </div>
+    <button id="AgregarP">Agregar Producto</button>
+    <button id="AgregarA">Agregar A</button>
+
+
+
+
+{% endblock %}
+
+{% block script %}
+    <script text="text/javascript">
+        contador=1
+        var Datos = new Array();
+        var Medicamento = null
+        var Indicacion = null
+
+        document.getElementById("AgregarP").addEventListener("click", function(){
+            contador += 1
+            console.log(contador)
+            
+            contenedor= "<label for='Medicamento_id'>Seleccione Medicamento</label>"
+            contenedor+="<select id='Medicamento_id"+contador +"' name='Medicamento' class='form-control'>"
+            contenedor+= "<option selected>Seleccione una Vacuna</option>"
+            contenedor+= "{% for date in Productos %}"
+            contenedor+= " {% if date.fk_veterinaria.nombre == user.username %}"
+            contenedor+="<option value='{{ date.id }}'> {{ date.nombre }}</option>"
+            contenedor+="{% endif %}"
+            contenedor+="{% endfor %}"
+            contenedor+="</select>"
+            contenedor+= "<label for='Indicacion'>Indicaciones </label>"
+            contenedor+="<input type'text' name='Indicacion' id='Indicacion_id"+contador+"' class='form-control'>"
+            
+ 
+
+            document.getElementById("Agregar").innerHTML+=contenedor
+            
+
+        })
+        document.getElementById("AgregarA").addEventListener("click", function(){
+            for(var i=1;i<=contador;i++)
+            {
+                
+                Medicamento = document.getElementById("Medicamento_id"+i).value
+                Indicacion = document.getElementById("Indicacion_id"+i).value
+                Datos["NAME"+i] = [Medicamento, Indicacion];
+               
+                
+                
+                    
+                
+                
+            }
+            console.log(Datos)
+
+        })
+
+
+        
+
+    </script>
 {% endblock %}

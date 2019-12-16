@@ -1,4 +1,4 @@
-{% extends 'IndexAdmin.html '%}
+{% extends 'indexAdmin.html'%}
 
 
 
@@ -15,26 +15,26 @@
             <th scope="col">Responsable</th>
             <th scope="col">Mascota</th>
             <th scope="col">Fecha Registro</th>
-            
-            
+
+
             <th scope="col"> Medicamento</th>
-            
+
           </tr>
         </thead>
         <tbody>
           <tr>
-    
+
           </tr>
           {% for date in form %}
           {% if date.fk_mascota.fk_usuario.fk_veterinaria == user%}
           <tr>
-            
+
             <td>{{date.fk_mascota.fk_usuario.documento}}</td>
             <td>{{date.fk_mascota.nombre}}</td>
             <td>{{date.fk_mascota.fecharegistro}}</td>
-            
+
             <td>{{date.fk_producto.nombre}}</td>
-            
+
           </tr>
           {% endif %}
 
@@ -43,7 +43,7 @@
           </tr>
         </tbody>
     </table>
-    
+
 
 
 {% endblock %}

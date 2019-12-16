@@ -1,20 +1,177 @@
-{% extends 'indexAdmin.html '%}
-
-
-
-
-
-
-
+{% extends 'indexAdmin.html'%}
 
 {% block input %}
 
-    <form method="POST" action="">
+    <form method="POST" >
         {% csrf_token %}
+        <label for="nombre" >Nombre:</label>
+        <p><input type="text" name="nombre" id="nombre_id"  class='form-control'></p>
+        
+        <label for="fechanacimiento">Fecha Nacimiento:</label>
+        <p><input type="date" name="fechanacimiento" id="fechanacimiento_id" class='form-control'></p>
 
-        {{ form.as_p }}
-        <button type="submit" class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" >Enviar</button>
+        <label for="especie">Especie</label>
+        <p>
+            <select id="especie_id" name="especie"  class='form-control'>
+                <option selected>Seleccione una Especie</option>
+                {% for date in Especies %}
+                    <option value="{{ date.id }}"> {{ date.especie }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+
+        <label for="Raza">Raza:</label>
+        <p>
+            <select id="Raza_Falsa" name="Raza" class='form-control'>
+                <option selected>Seleccione una Raza</option>
+            </select>
+        </p>
+        <p>
+            <select id="Raza_id1" name="Raza" style="display: none;" class='form-control'>
+                <option selected>Seleccione una Raza</option>
+                {% for date in Razas %}
+                    {% if date.fk_especie.especie == "Canino" %}
+                        <option value="{{ date.id }}"> {{ date.nombre }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <select id="Raza_id2" name="Raza" style="display: none;" class='form-control'>
+                <option selected>Seleccione una Raza</option>
+                {% for date in Razas %}
+                    {% if date.fk_especie.especie == "Felino" %}
+                        <option value="{{ date.id }}"> {{ date.nombre }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </p>
+
+        <label for="GeneroMascotas">Genero Mascota</label>
+        <p>
+            <select id="GeneroMascotas" name="GeneroMascotas_id" class='form-control'>
+                <option selected>Seleccione una Genero</option>
+                {% for date in GeneroMascotas %}
+                    <option value="{{ date.id }}"> {{ date.nombre }}</option>
+                {% endfor %}
+
+                
+            </select>
+        </p>
+
+        
     </form>
+    <button  class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" id="submit">Enviar</button>
+
+
+    
+{% endblock %}
+{% block script %}
+    <script text="text/javascript">
+
+        var csrftoken= $("[name=csrfmiddlewaretoken]").val();
+        var Usuario       = null
+        var Nombre        = null
+        var FechaNacimiento = null
+        var Especie       = null
+        var GeneroMascota = null
+        var Raza          = null
+        
+        
+ 
+        /*Capturar datos y filtrarlos*/
+        var selectespecie = document.getElementById("especie_id");
+        
+        
+
+        selectespecie.addEventListener("change", function(){
+            var selectedOption = this.options[selectespecie.selectedIndex];
+            
+            console.log(selectedOption.text) 
+            if(selectedOption.text == "Canino"){
+
+                
+                document.getElementById("Raza_Falsa").style.display = "none";
+                document.getElementById("Raza_id2").style.display = "none";
+                document.getElementById("Raza_id1").style.display = "block";
+
+                
+
+            }
+            if(selectedOption.text == "Felino"){
+                document.getElementById("Raza_Falsa").style.display = "none";
+                document.getElementById("Raza_id1").style.display = "none";
+                document.getElementById("Raza_id2").style.display = "block";
+
+                
+            }
+        });
+
+        /* Capturar Datos Del Formulario */
+
+
+
+
+
+
+
+        document.getElementById("submit").addEventListener("click", function(){
+            
+            Usuario        =    "{{ Usuario }}"
+            Nombre         =    document.getElementById("nombre_id").value
+            FechaNacimiento  =    document.getElementById("fechanacimiento_id").value
+            Especie        =    document.getElementById("especie_id").value
+            GeneroMascota  =    document.getElementById("GeneroMascotas").value
+            
+            
+            
+            
+            if(selectespecie.options[selectespecie.selectedIndex].text== "Canino"){
+                
+                Raza  =  document.getElementById("Raza_id1").value
+                console.log(Raza)
+
+                
+
+            }
+            if(selectespecie.options[selectespecie.selectedIndex].text== "Felino"){
+                Raza  =  document.getElementById("Raza_id1").value
+                console.log(Raza)
+                
+            }
+            
+
+            var Data ={ 'Nombre':Nombre , 
+                        'FechaNacimiento':FechaNacimiento,
+                        'Especie':Especie, 
+                        'Raza':Raza,
+                        'GeneroMascota':GeneroMascota, 
+                        'Usuario':Usuario}
+            console.log(Data)
+
+            fetch("RegistrarMascota/", {
+                method: "post",
+                headers:{
+                    'acept':'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify(Data)
+            })
+                .then( (Response)=>{
+                console.log(Data)
+
+                });
+
+
+
+
+        })                
+
+
+    </script>
 
 {% endblock %}
+
+
 

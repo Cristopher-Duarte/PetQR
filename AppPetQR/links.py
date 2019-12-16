@@ -1,6 +1,7 @@
 from AppPetQR.views import *
 from django.urls import *
 
+
 from .models import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,6 +14,9 @@ from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
+
+
+
     #Esto no se referencia en ningun lado esto es movil <-------MOVIL-------->
     path('Inicio/<int:pk>',MostrarMascotas.as_view(),name="inicio"),
     #path('Vacunas/',Vacunas,name="vacuna"),
@@ -25,25 +29,33 @@ urlpatterns = [
     #------------------------Registros------------------------------------------------------------------#
     path('RegisterVeterinaria/',RegistroVeterinaria.as_view(),name="Rveterinaria"),
     path('RegisterUsuario/<int:pk>',login_required(RegistroUsuario.as_view()),name="RUsuario"),
-    path('RegisterMascota/<int:pk>',login_required(RegistroMascotas.as_view()),name="RMascota"),
+    
     path('RegistroMedico/<int:pk>',login_required(RegistroMedico.as_view()),name="RMedico"),
     path('RegistroProducto/<int:pk>',login_required(RegistroProducto.as_view()),name="RProducto"),
-    path('RegistroDesparacitacion/<int:pk>',login_required(RegistroDesparacitacion.as_view()),name="RDesparacitacion"),
+    
+
+
+    path('PaginaRegistroMascota/<int:pk>',login_required(PaginaRegistroMascota.as_view()),name="PaginaRegistroMascota"),
+    path('PaginaRegistroMascota/RegistrarMascota/',login_required(RegistrarMascota)),
 
     #Registro Vacunas
-    path('RegistroVacunas/<int:pk>',login_required(RegistroVacunas.as_view()),name="RVacunas"),
-    path('RegistroDetalleVacuna/',login_required(RegistroDetalleVacuna.as_view()),name="RDatelleVacuna"),
-    path('RegistroDetalleVacuna/Register/',login_required(RegisterVacuna)),
-    #Fin registro
+    path('PaginaRegistroVacunas/<int:pk>',login_required(PaginaRegistroVacunas.as_view()),name="PaginaRegistroVacunas"),
+    path('PaginaRegistroVacunas/RegistrarVacunas/',login_required(RegistrarVacunas)),
 
+    
+    #Fin registro Vacunas
+    path('PaginaRegistroControlesMedicos/<int:pk>',login_required(PaginaRegistroControlesMedicos.as_view()),name="PaginaRegistroControlesMedicos"),
+    path('PaginaRegistroControlesMedicos/RegistrarVacunas/',login_required(RegistrarVacunas)),
     #Registro Control Medico
-    path('RegistroControlMedico/<int:mascota>',login_required(RegistroControlMedico.as_view()),name="RControlMedico"),
-    path('RegistroDetalleControlMedico/<int:pk>',login_required(RegistroDetalleControlMedico.as_view()),name="RDetalleControlMedico"),
-    path('RegistroDetalleControlMedico/Register',login_required(RegisterControlMedico)),
-    #Fin Registro
-   
     
     
+    
+    #Fin Registro Control Medico
+
+    #Registro Desparasitantes
+
+    #Fin Registro Desparasitantes
+
 
     #------------------------Listas------------------------------------------------------------------#
     path('ListarVacunas/',login_required(ListarVacunasMovil.as_view()),name="LVacunas"),
@@ -58,11 +70,20 @@ urlpatterns = [
     path('MostrarProducto/',login_required(MostrarProducto.as_view()),name="LMostrarProducto"),
 
 
-    path('', LoginView.as_view(template_name="accounts/login.html"), name='login'),
+
+    path('', LoginView.as_view(template_name="Accounts/Login.html"), name='login'),
+
+
     path('LogoutSesion/',login_required(LogoutView.as_view(template_name='accounts/logout.html')),name='logout'),
     path('User/Index/',login_required(Index_Usuario),name='IndexUsuarios'),
     path('Home/Users',login_required(home),name='Home'),
     path('Admin/Index/',login_required(Index_Admin),name='IndexAdmin'),
     path('Doc/Index/',login_required(Index_Doctor),name='IndexDoctor'),
+
+
+
+
+
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

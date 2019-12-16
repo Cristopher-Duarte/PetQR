@@ -25,6 +25,7 @@ SECRET_KEY = 'sim(90dat5qrenz%8p&-xqjlfpz$(06(o%(rwji%ef*h)v6tr%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['1005012521.pythonanywhere.com']
 ALLOWED_HOSTS = []
 
 
@@ -37,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+
     'AppPetQR',
+
 ]
 
 MIDDLEWARE = [
@@ -78,18 +81,21 @@ WSGI_APPLICATION = 'ProyectoPetQR.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PetQR',
-        'USER': 'root',
-        'PASSWORD':'1005012521',
-        'HOST':'localhost',
+        'NAME':    'petqr',
+        'USER':     'root',
+        'PASSWORD': '1001346644',
+        'HOST':     'localhost',
+
+
     }
+
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS=[
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },

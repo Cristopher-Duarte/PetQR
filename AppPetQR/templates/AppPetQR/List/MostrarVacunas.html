@@ -1,4 +1,4 @@
-{% extends 'Administrador.html '%}
+{% extends 'indexAdmin.html'%}
 
 
 
@@ -28,25 +28,25 @@
             <th scope="col">Proxima Vacuna</th>
             <th scope="col">Medicamento</th>
             <th scope="col">Detalle</th>
-            
+
 
           </tr>
         </thead>
         <tbody>
           <tr>
-    
+
           </tr>
           {% for date in form %}
           {% if date.fk_mascota.fk_usuario.fk_veterinaria == user%}
           <tr>
-            
+
             <td>{{date.fk_mascota.nombre}}</td>
             <td>{{date.fecharegistro}}</td>
             <td>{{date.proximavacuna}}</td>
 
             <td>{{date.fk_producto.nombre}}</td>
             <td><a href="">Ver Mas</a></td>
-            
+
           </tr>
           {% endif %}
 

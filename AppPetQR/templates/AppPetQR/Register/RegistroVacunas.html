@@ -1,25 +1,134 @@
-{% extends 'indexAdmin.html '%}
-{% load static %}
+{% extends 'indexAdmin.html'%}
+
 
 
 {% block input %}
-    <form method="POST" action="">
+    
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="Vacuna_id" style="margin-top:3em ;">Vacunas</label>
+        <p>
+                
+            <select id="Vacuna_id" class='form-control'>
+                <option selected>Seleccione una Vacuna</option>
+                {% for date in Productos %}
+                    {% if date.fk_veterinaria.nombre == user.username %}
+                        <option value="{{ date.id }}"> {{ date.nombre }}</option>
+                    {% endif %}
+                {% endfor %}
 
 
+            </select>
+        </p>
 
-
-        <button type="submit" >Enviar</button>
-    </form>
-
-
-    
-
-    
-    
 
   
 
+        <div>
+            <label for="">Efectos</label>
+            <p>
+                <select id="izquierda" multiple class='form-control'>
+                    {% for data in Efecto %}
+                        <option value="{{data.id}}">{{data.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <button onclick="Mover(2)" class='form-control'style="margin-bottom:2em ;"> <<<< </button>
+            <button onclick="Mover(1)"class='form-control' style="margin-bottom:1em ;"> >>>> </button>
+            <label for="">Seleccionados</label>
+            <p><select id="derecha" multiple class='form-control'></select></p>
+                
+            </select>
+        </div>
+
+        <label for="proximavacuna">Proxima Vacuna</label>
+        <p><input type="date" name="proximavacuna" id="proximavacuna_id" class='form-control'></p>
+    
+    
+    
+    
+        
+   
+
+
+    <button id="RegistrarVacunas"  class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;"> Registrar Vacuna</button>
+
+{% endblock %}
+{% block script %}
+    <script text="text/javascript">
+        
+        function Mover(valor){
+            if (valor === 1) {
+                var array = document.getElementById("izquierda");
+                var arrayDos = document.getElementById("derecha");
+                var seleccionar = array.selectedIndex;
+                var seleccionarDos = arrayDos.options.length;
+                if (seleccionar !=1) {
+                    var mover = array.options[seleccionar];
+                    arrayDos.options[seleccionarDos] = new Option(mover.text, mover.value);
+                    array.options[seleccionar] = null;
+                }
+
+            }
+            else if(valor === 2){
+
+                    var array = document.getElementById("derecha");
+                    var arrayDos = document.getElementById("izquierda");
+                    var seleccionar = array.selectedIndex;
+                    var seleccionarDos = arrayDos.options.length;
+                    if (seleccionar !=1) {
+                        var mover = array.options[seleccionar];
+                        arrayDos.options[seleccionarDos] = new Option(mover.text, mover.value);
+                        array.options[seleccionar] = null;
+                    }
+            }
+        }
+
+        document.getElementById("RegistrarVacunas").addEventListener("click",function(){
+    
+            Efecto=[]
+            proximavacuna = null
+            Datos ={}
+            Mascota ="{{ Mascota }}"
+            Producto = null
+
+
+
+            var csrftoken= $("[name=csrfmiddlewaretoken]").val();
+            select=document.getElementById("derecha");
+            proximavacuna= document.getElementById("proximavacuna_id").value
+            Producto= document.getElementById("Vacuna_id").value
+            
+            
+            for(var i=0;i<select.length;i++)
+            {
+                
+                Efecto.push(select.options[i].value)
+            
+            }
+
+            Datos={'Efecto':Efecto,
+                   'proximavacuna':proximavacuna,
+                   'Mascota':Mascota,
+                   'Producto':Producto}
+            
+
+            fetch("RegistrarVacunas/", {
+                method: "post",
+                headers:{
+                    'acept':'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify(Datos)
+            })
+            .then( (Response)=>{
+                console.log(Datos)
+
+            });
+        })
+
+  
+
+    </script>
 
 {% endblock %}
