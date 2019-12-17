@@ -298,8 +298,8 @@ class ListarVacunasMovil(View):
         User = request.user.username
         dueño = Usuario.objects.get(documento=User)
         VacunasDate= InfoVacunas.objects.filter(fk_mascota=pk)
-        
-        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunasDate':VacunasDate, 'dueño':dueño})
+        MostMas= Mascotas.objects.get(id=pk)
+        return render(request,'AppPetQR/Movil/List/ListarVacunas.html', {'VacunasDate':VacunasDate, 'dueño':dueño,'MostMas':MostMas})
 
 class MostrarDesparasitanteMovil(View):
     def get(self, request):
