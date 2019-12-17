@@ -27,6 +27,10 @@ urlpatterns = [
     path('MostrarDesparasitante/Movil/<int:pk>',login_required(ListarVacunasMovil.as_view()),name="LDMascotasMov"),
     path('DesparacitacionIndex/Movil/',login_required(MostrarDesparasitanteMovil.as_view()),name="IndiceDes"),
     path('VacunasIndex/Movil/',login_required(MostrarVacunaMovil.as_view()),name="IndiceVac"),
+
+
+
+    path('usuarios/login/<Username>/<Password>', login_view, name = 'login_view'),
     
     #<--------FIN MOVIL--------->
 

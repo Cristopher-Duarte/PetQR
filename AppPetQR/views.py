@@ -13,6 +13,10 @@ from AppPetQR.VerificarUsuario import Verificador
 
 from django.http.response import HttpResponseRedirect
 
+
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+
 """
 from django.views.generic.edit import FormView
 
@@ -41,7 +45,20 @@ def Recordatorio(request):
     return render(request,"AppPetQR/List/recordatorio.html")
 
 
+def login_view(request, Username, Password):
+    if request.method=='GET':
+        return render(request, 'AppPetQR/IndexUsuario.html')
+    else:
+        
+        user = authenticate(username=Username, password=Password)
 
+
+       
+        if user.is_usuario:
+            login(request, user)
+            
+            return redirect(reverse('IndexUsuarios'))
+        return render(request, 'AppPetQR/IndexUsuario.html')
 
 
 
@@ -195,7 +212,7 @@ def RegistrarMascota(request):
 
         FormularioMascota = Mascotas(nombre = Data_json["Nombre"], fechanacimiento= Data_json["FechaNacimiento"],
                                      fk_especie=especie, fk_raza=raza, fk_usuario=usuario, 
-                                     fk_generomascota=generomascota)
+                                     fk_generomascota=generomascota, foto=Data_json["Foto"])
 
         FormularioMascota.save()
 
@@ -273,28 +290,6 @@ def  RegistrarDesparasitacion(request):
         
     return HttpResponse("Todo Bien Parce")
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #---------------Listar Movil---------------#
 

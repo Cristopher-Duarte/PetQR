@@ -59,6 +59,8 @@
             </select>
         </p>
 
+        <p><input type="file" name="Foto" id="Foto_id"></p>
+
         
     </form>
     <button  class="btn-lg btn-block btn ColorBoton" style="margin-bottom:2em ;" id="submit">Enviar</button>
@@ -76,6 +78,7 @@
         var Especie       = null
         var GeneroMascota = null
         var Raza          = null
+        var Foto          = null
         
         
  
@@ -122,6 +125,7 @@
             FechaNacimiento  =    document.getElementById("fechanacimiento_id").value
             Especie        =    document.getElementById("especie_id").value
             GeneroMascota  =    document.getElementById("GeneroMascotas").value
+            Foto           =    document.getElementById("Foto_id").files[0]
             
             
             
@@ -146,7 +150,8 @@
                         'Especie':Especie, 
                         'Raza':Raza,
                         'GeneroMascota':GeneroMascota, 
-                        'Usuario':Usuario}
+                        'Usuario':Usuario,
+                        'Foto':Foto["name"]}
             console.log(Data)
 
             fetch("RegistrarMascota/", {
