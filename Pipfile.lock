@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c099773219dcde8f7d01633c6c42e1b0eae3c710472d7c95569a5be43360d99d"
+            "sha256": "c717006b9c9cb19b373201a4103f51b0a1f597ee593baca29e3ff05dfb62f151"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,11 +18,11 @@
     "default": {
         "django": {
             "hashes": [
-                "sha256:9614851d4a7ff8cbd32b73c6076441f377c45a5bbff7e771798fb02c43c31f47",
-                "sha256:af18618ce3291be5092893d8522fe3919661bf3a1fb60e3858ae74865a4f07c2"
+                "sha256:9493f9c4417ab6c15221a7ab964f73db0632bc6337ade33810078423b800dbd9",
+                "sha256:e2f3ada50cf2106af7b2631b7b0b6f0d983ae30aa218f06d5ec93d3049f94897"
             ],
             "index": "pypi",
-            "version": "==2.0"
+            "version": "==2.0.12"
         },
         "pymysql": {
             "hashes": [
