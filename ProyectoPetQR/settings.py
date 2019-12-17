@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':    'petqr',
         'USER':     'root',
-        'PASSWORD': '1001346644',
+        'PASSWORD': '1005012521',
         'HOST':     'localhost',
 
 
