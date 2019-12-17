@@ -46,19 +46,17 @@ def Recordatorio(request):
 
 
 def login_view(request, Username, Password):
-    if request.method=='GET':
-        return render(request, 'AppPetQR/IndexUsuario.html')
-    else:
+
         
-        user = authenticate(username=Username, password=Password)
+    user = authenticate(username=Username, password=Password)
 
 
        
-        if user.is_usuario:
-            login(request, user)
+    if user:
+        login(request, user)
             
-            return redirect(reverse('IndexUsuarios'))
-        return render(request, 'AppPetQR/IndexUsuario.html')
+        return redirect(reverse('LMascotasMov'))
+    return render(request, 'AppPetQR/RegistroVeterinaria.html')
 
 
 
